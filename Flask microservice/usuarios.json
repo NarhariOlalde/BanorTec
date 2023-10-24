@@ -1,0 +1,133 @@
+[
+  {
+    "_userId": "1234",
+    "Nombre": "Juan Perez",
+    "Alias": "Juan",
+    "Tarjetas": [
+      {
+        "numero": "1234567891011121",
+        "nombre": "Oro",
+        "saldo": 500,
+        "vencimiento": "01/24",
+        "lineaCredito": 10000
+      },
+      {
+        "numero": "2234567891011121",
+        "nombre": "Enlace",
+        "saldo": 3000,
+        "vencimiento": "11/23",
+        "lineaCredito": null
+      }
+    ],
+    "Presupuestos": [
+      {
+        "categoria": "transporte",
+        "limite": 3000
+      },
+      {
+        "categoria": "comida",
+        "limite": 2500
+      },
+      {
+        "categoria": "renta",
+        "limite": 4000
+      },
+      {
+        "categoria": "diversion",
+        "limite": 2800
+      }
+    ]
+  },
+  {
+    "_userId": "5678",
+    "Nombre": "Roberto Fernandez",
+    "Alias": "Roberto",
+    "Tarjetas": [
+      {
+        "numero": "4234567891011121",
+        "nombre": "Oro",
+        "saldo": 380,
+        "vencimiento": "02/26",
+        "lineaCredito": 10000
+      },
+      {
+        "numero": "5234567891011121",
+        "nombre": "Enlace",
+        "saldo": 3200,
+        "vencimiento": "07/24",
+        "lineaCredito": null
+      },
+      {
+        "numero": "6234567891011121",
+        "nombre": "Nomina",
+        "saldo": 1100,
+        "vencimiento": "11/26",
+        "lineaCredito": null
+      }
+    ],
+    "Presupuestos": [
+      {
+        "categoria": "transporte",
+        "limite": 3000
+      },
+      {
+        "categoria": "comida",
+        "limite": 2500
+      },
+      {
+        "categoria": "renta",
+        "limite": 4000
+      },
+      {
+        "categoria": "diversion",
+        "limite": 2800
+      }
+    ]
+  },
+  {
+    "_userId": "9101",
+    "Nombre": "Carlos Ramirez",
+    "Alias": "Carlos",
+    "Tarjetas": [
+      {
+        "numero": "7234567891011121",
+        "nombre": "Oro",
+        "saldo": 4800,
+        "vencimiento": "03/27",
+        "lineaCredito": 100000
+      },
+      {
+        "numero": "8234567891011121",
+        "nombre": "Enlace",
+        "saldo": 2900,
+        "vencimiento": "09/25",
+        "lineaCredito": null
+      },
+      {
+        "numero": "3234567891011121",
+        "nombre": "Nomina",
+        "saldo": 1000,
+        "vencimiento": "11/24",
+        "lineaCredito": null
+      }
+    ],
+    "Presupuestos": [
+      {
+        "categoria": "transporte",
+        "limite": 3000
+      },
+      {
+        "categoria": "comida",
+        "limite": 2500
+      },
+      {
+        "categoria": "renta",
+        "limite": 4000
+      },
+      {
+        "categoria": "diversion",
+        "limite": 2800
+      }
+    ]
+  }
+]

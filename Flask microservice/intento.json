@@ -1,0 +1,372 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "OpenAI API",
+    "description": "API for making predictions."
+  },
+  "paths": {
+    "/recordatorioAutomatico": {
+      "post": {
+        "summary": "Recordatorio automatico",
+        "description": "Endpoint to make a prediction.",
+        "requestBody": {
+          "description": "Data needed to make a prediction",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "input_data": {
+                    "type": "string",
+                    "description": "The input data for prediction."
+                  }
+                },
+                "required": ["input_data"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful prediction",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "recordatorio": {
+                      "type": "string",
+                      "description": "The result of the prediction."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Data is missing or malformed."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
+    },
+    "/recordatorioManual": {
+      "post": {
+        "summary": "Recordatorio manual",
+        "description": "Endpoint para crear un recordatorio manual.",
+        "requestBody": {
+          "description": "Datos para recordatorio manual",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "input_data": {
+                    "type": "string",
+                    "description": "Datos de entrada para el recordatorio"
+                  }
+                },
+                "required": ["input_data"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful recordatorio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "recordatorio": {
+                      "type": "string",
+                      "description": "El resultado del recordatorio"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Data is missing or malformed."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
+    },
+    "/tarjetas": {
+      "post": {
+        "summary": "Tarjetas disponibles",
+        "description": "Endpoint para conocer las tarjetas disponibles",
+        "requestBody": {
+          "description": "Datos de las tarjetas",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "input_data": {
+                    "type": "string",
+                    "description": "Datos de entrada para el recordatorio"
+                  }
+                },
+                "required": ["input_data"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful connection",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "tarjeta": {
+                        "type": "string",
+                        "description": "Description for tarjeta property"
+                      },
+                      "disponible": {
+                        "type": "string",
+                        "description": "Description for cantidad property"
+                      },
+                      "Numero": {
+                        "type": "string",
+                        "description": "Description for cantidad property"
+                      }
+                    },
+                    "required": ["tarjeta", "cantidad"]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Data is missing or malformed."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
+    },
+    "/generate_chart": {
+      "post": {
+        "summary": "Generar grafica",
+        "description": "Endpoint para crear una grafica.",
+        "requestBody": {
+          "description": "Data needed to make a grafica",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "input_data": {
+                    "type": "string",
+                    "description": "The input data para una grafica"
+                  }
+                },
+                "required": ["input_data"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful prediction",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "The status of the http request"
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "The URL of the chart image"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Data is missing or malformed."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
+    },
+    "/gasto_mensual": {
+      "post": {
+        "summary": "Checar el gasto mensual en alguna categoria",
+        "description": "Endpoint para crear una grafica.",
+        "requestBody": {
+          "description": "Data needed to make a grafica",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "input_data": {
+                    "type": "string",
+                    "description": "The input data para una grafica"
+                  }
+                },
+                "required": ["input_data"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful prediction",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Gasto mensual": {
+                      "type": "string",
+                      "description": "The status of the http request"
+                    },
+                    "Categoria": {
+                      "type": "string",
+                      "description": "The URL of the chart image"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Data is missing or malformed."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
+    },
+    "/check_card": {
+      "post": {
+        "summary": "Checar el credito de las tarjetas o proponer renovar",
+        "description": "Endpoint para crear una grafica.",
+        "requestBody": {
+          "description": "Data needed to make a grafica",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "_userId": {
+                    "type": "string",
+                    "description": "Description of the key"
+                  }
+                },
+                "required": ["_userId"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful prediction",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "The status of the http request"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Data is missing or malformed."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
+    },
+    "/get_random_user": {
+      "post": {
+        "summary": "Obtener un usuario aleatorio",
+        "description": "Endpoint para crear una grafica.",
+        "requestBody": {
+          "description": "Data needed to make a grafica",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "input_data": {
+                    "type": "string",
+                    "description": "The input data para una grafica"
+                  }
+                },
+                "required": ["input_data"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful prediction",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "CreatedUser": {
+                      "type": "string",
+                      "description": "The status of the http request"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Data is missing or malformed."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://20dc-131-178-102-160.ngrok-free.app",
+      "description": "Local Development Server"
+    }
+  ]
+}
