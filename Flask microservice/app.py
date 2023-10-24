@@ -152,40 +152,46 @@ def upload_image(buf, filename):
         print(f"Error uploading file: {e}")
         return False
 
+# TODO: Change to an array of categories
 @app.route('/generate_chart', methods=['POST'])
 def generate_chart():
     # Read file
-    file = "datos.csv"
+    file = "../DataClusterMCC/test_dataset_with_predictions.csv"
     df = pd.read_csv(file)
 
-    # Filter the DataFrame for the desired value in the 'column_name' column
-    # TODO: Cambiar por nombres de categorias
-    categoria_1 = '7 ELEVEN PARICTURIN'  # Replace with the value you're interested in
-    categoria_2 = '7 ELEVEN NVA FAISAN'  # Replace with the value you're interested in
-    categoria_3 = 'CARLS JR GONZALITOS'  # Replace with the value you're interested in
-    categoria_4 = 'OXXO PASEO NORA MTY'  # Replace with the value you're interested in
+    # Filtro de mes
     month = "NOV"
-
-    # Filter by 'FEC_PROC' containing 'MAR'
     filtro_mes = df[df['FEC_PROC'].str.contains(month)]
 
-    # Filtro de categoria
-    filtro_categoria_1 = filtro_mes[filtro_mes['NOM_COM'] == categoria_1]
-    filtro_categoria_2 = filtro_mes[filtro_mes['NOM_COM'] == categoria_2]
-    filtro_categoria_3 = filtro_mes[filtro_mes['NOM_COM'] == categoria_3]
-    filtro_categoria_4 = filtro_mes[filtro_mes['NOM_COM'] == categoria_4]
+    # Filter the DataFrame for the desired value in the 'column_name' column
+    # categoria_1 = 'Food'  # Replace with the value you're interested in
+    # categoria_2 = 'Transport'  # Replace with the value you're interested in
+    # categoria_3 = 'Clothes'  # Replace with the value you're interested in
+    # categoria_4 = 'Health'  # Replace with the value you're interested in
+    # categoria_5 = 'Entertainment'  # Replace with the value you're interested in
+    # categoria_6 = 'Technology'  # Replace with the value you're interested in
+    # categoria_7 = 'Services'  # Replace with the value you're interested in
+    # categoria_8 = 'Viajes'  # Replace with the value you're interested in
 
-    total_rows = df.shape[0]
-    count_of_value_1 = round((len(filtro_categoria_1)*2500.0 / total_rows) * 100.0, 1)
-    count_of_value_2 = round((len(filtro_categoria_2)*2500.0 / total_rows) * 100.0, 1)
-    count_of_value_3 = round((len(filtro_categoria_3)*2500.0 / total_rows) * 100.0, 1)
-    count_of_value_4 = round((len(filtro_categoria_4)*2500.0 / total_rows) * 100.0, 1)
-    count_otros = round(100.0 - count_of_value_1 - count_of_value_2 - count_of_value_3 - count_of_value_4)
+    # Filtro de categoria
+    etiquetas = ["Food", "Transport", "Clothes", "Health", "Entertainment", "Technology", "Services", "Viajes", "Casa", "Vehiculo", "Departamental", "Super", "Mascotas", "Deportes", "Educacion", "Belleza", "Compras en Linea", "Otros"]
+    categorias = [{"categoria": categoria, "count": 0} for categoria in etiquetas]
+
+    for index, obj in enumerate(categorias):
+        print(obj["categoria"])
+        print(filtro_mes['Predicted_Category'] == obj["categoria"])
+
+        print(len(filtro_mes[filtro_mes['Predicted_Category'] == obj["categoria"]]))
+
+        categorias[index]["count"] = round((len(filtro_mes[filtro_mes['Predicted_Category'] == obj["categoria"]]) / len(filtro_mes)) * 100.0, 1)
+    top_6 = sorted(categorias, key=lambda x: x['count'], reverse=True)[:6]
+
+    count_otros = round(100.0 - sum(item["count"] for item in top_6), 1)
 
     # Sample data: labels and corresponding sizes
-    colors = ['#FAC310', '#B01657', '#E4415D', '#FF8029', '#808080']
-    labels = ['Renta', 'Transporte', 'Comida', 'Diversión', "Otros"] # TODO: Cambiar por categorias
-    sizes = [count_of_value_1, count_of_value_2, count_of_value_3, count_of_value_4, count_otros] # TODO: Quitar el peso extra
+    colors = ['#FAC310', '#B01657', '#E4415D', '#FF8029','#E35122','#E6201B', '#808080']
+    labels =  [item["categoria"] for item in top_6] + ["Otros"]
+    sizes =  [item["count"] for item in top_6] + [count_otros]
 
     # Plotting the pie chart
     fig, ax = plt.subplots()
@@ -198,7 +204,7 @@ def generate_chart():
     ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.\
 
     # Adding legends
-    ax.legend(wedges, labels, loc="center left", bbox_to_anchor=(1, 0, 0.5, 1), frameon=False, fontsize=16)
+    ax.legend(wedges, labels, loc="center left", bbox_to_anchor=(1.1, 0, 0.5, 1), frameon=False, fontsize=16)
 
     # Adjust layout to account for the external legend
     plt.tight_layout()
