@@ -2,6 +2,7 @@ from helpers.users import generate_random_user, get_user, read_json_from_file
 from functions.categorizacion import gasto_mensual, generate_chart
 from functions.proponerAlternativas import check_card
 from functions.recordatorios import recordatorioAutomatico, recordatorioManual, tarjetasDisponibles
+from functions.saludFinanciera import saludFinanciera
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -38,7 +39,9 @@ def get_gasto_mensual():
     return gasto_mensual()
 
 
-# 4. Mejorar la salud financiera
+@app.route('/salud_financiera', methods=['POST'])
+def get_salud_financiera():
+    return saludFinanciera()
 
 
 # Helper functions
