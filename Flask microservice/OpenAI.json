@@ -162,21 +162,21 @@
         }
       }
     },
-    "/generate_chart": {
+    "/genera_grafica_categorias": {
       "post": {
-        "summary": "Generar grafica",
-        "description": "Endpoint para crear una grafica.",
+        "summary": "Generar grafica de gastos mensuales",
+        "description": "Endpoint para generar un grafica de gastos mensual",
         "requestBody": {
-          "description": "Data needed to make a grafica",
+          "description": "Mes necesario para generar la grafica",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
-                  "input_data": {
+                  "mes": {
                     "type": "string",
-                    "description": "The input data para una grafica"
+                    "description": "Mes a elegir"
                   }
                 },
                 "required": ["input_data"]
@@ -214,21 +214,25 @@
         }
       }
     },
-    "/gasto_mensual": {
+    "/gasto_mensual_categoria": {
       "post": {
-        "summary": "Checar el gasto mensual en alguna categoria",
-        "description": "Endpoint para crear una grafica.",
+        "summary": "Revisar el gasto mensual en alguna categoria",
+        "description": "Endpoint para conocer el gasto mensual de una categoria",
         "requestBody": {
-          "description": "Data needed to make a grafica",
+          "description": "Datos para generar el gastos mensual",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
-                  "input_data": {
+                  "categoria": {
                     "type": "string",
-                    "description": "The input data para una grafica"
+                    "description": "Gategoria de gasto mensual"
+                  },
+                  "mes": {
+                    "type": "string",
+                    "description": "Mes a elegir"
                   }
                 },
                 "required": ["input_data"]
@@ -244,7 +248,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "Gasto mensual": {
+                    "GastoMensual": {
                       "type": "string",
                       "description": "The status of the http request"
                     },
@@ -266,12 +270,12 @@
         }
       }
     },
-    "/check_card": {
+    "/revisa_tarjeta": {
       "post": {
-        "summary": "Checar el credito de las tarjetas o proponer renovar",
-        "description": "Endpoint para crear una grafica.",
+        "summary": "Revisar el limite de las tarjetas de credito o proponer renovar tarjetas",
+        "description": "Endpoint para revisar las tarjetas de un usuario",
         "requestBody": {
-          "description": "Data needed to make a grafica",
+          "description": "Datos para revisar las tarjetas de un usuario",
           "required": true,
           "content": {
             "application/json": {
@@ -280,7 +284,7 @@
                 "properties": {
                   "_userId": {
                     "type": "string",
-                    "description": "Description of the key"
+                    "description": "ID unico del usuario"
                   }
                 },
                 "required": ["_userId"]
@@ -314,24 +318,18 @@
         }
       }
     },
-    "/get_random_user": {
+    "/genera_usuario": {
       "post": {
         "summary": "Obtener un usuario aleatorio",
-        "description": "Endpoint para crear una grafica.",
+        "description": "Endpoint para obtener un usuario aleatorio",
         "requestBody": {
-          "description": "Data needed to make a grafica",
+          "description": "none",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {
-                  "input_data": {
-                    "type": "string",
-                    "description": "The input data para una grafica"
-                  }
-                },
-                "required": ["input_data"]
+                "properties": {}
               }
             }
           }
@@ -344,9 +342,13 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "CreatedUser": {
+                    "userId": {
                       "type": "string",
-                      "description": "The status of the http request"
+                      "description": "user id"
+                    },
+                    "userName": {
+                      "type": "string",
+                      "description": "user name"
                     }
                   }
                 }
@@ -365,7 +367,7 @@
   },
   "servers": [
     {
-      "url": "https://20dc-131-178-102-160.ngrok-free.app",
+      "url": "https://78cc-131-178-102-160.ngrok-free.app",
       "description": "Local Development Server"
     }
   ]

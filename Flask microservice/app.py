@@ -1,10 +1,11 @@
 from helpers.users import generate_random_user, get_user, read_json_from_file
-from functions.categorizacion import gasto_mensual, generate_chart
+from functions.categorizacion import gasto_mensual, generate_chart, crea_imagen_mes
 from functions.proponerAlternativas import check_card
 from functions.recordatorios import recordatorioAutomatico, recordatorioManual, tarjetasDisponibles
-from flask import Flask, request
+from flask import Flask, request, render_template, send_file
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
+app.static_folder = 'static'
 
 # 1. Recordatorios
 @app.route('/recordatorioAutomatico', methods=['POST'])
@@ -20,7 +21,7 @@ def get_tarjetas_disponibles():
     return tarjetasDisponibles()
 
 
-# 2. Proponer alternativas
+# 2. Proponer alternativas ////////////////////////////////////////
 @app.route('/revisa_tarjeta', methods=['POST'])
 def get_card_status():
     data = request.json
@@ -28,15 +29,28 @@ def get_card_status():
     return check_card(userId)
 
 
-# 3. Identificar gastos (Categorizacion)
+# 3. Identificar gastos (Categorizacion) ////////////////////////
 @app.route('/genera_grafica_categorias', methods=['POST'])
 def create_chart_expenses():
-    return generate_chart()
+    data = request.json
+    mes = data.get('mes')
+    return generate_chart(mes)
 
 @app.route('/gasto_mensual_categoria', methods=['POST'])
 def get_gasto_mensual():
-    return gasto_mensual()
+    data = request.json
+    categoria = data.get('categoria')
+    mes = data.get('mes')
+    return gasto_mensual(categoria, mes)
 
+@app.route('/crea_imagen_mes', methods=['POST'])
+def get_imagen_mes():
+    data = request.json
+    categoria = data.get('categoria')
+    mes = data.get('mes')
+    userId = data.get('userId')
+
+    return crea_imagen_mes(categoria, mes, userId)
 
 # 4. Mejorar la salud financiera
 

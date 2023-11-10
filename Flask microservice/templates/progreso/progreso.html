@@ -1,0 +1,326 @@
+<html>
+  <head>
+    <title>Check Card</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      flex-direction: column;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      border-radius: 2rem;
+      box-shadow: 0.1rem 0.1rem 0.5rem 0.2rem rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      font-family: "Roboto", sans-serif;
+    }
+
+    .header {
+      display: flex;
+    }
+
+    .header-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header-text-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    .header-text-subtitle {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .header-text-presupuesto {
+      font-size: 1.2rem;
+      color: rgba(147, 147, 147);
+      font-weight: 600;
+    }
+
+    .header-text-cantidad {
+      color: rgba(89, 89, 89);
+      font-size: 1.3rem;
+      font-weight: 600;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 0.4rem;
+    }
+
+    .header-cantidad-signo {
+      font-size: 0.7rem;
+    }
+
+    .header-cantidad-cantidad {
+      font-size: 1.5rem;
+      line-height: 0.9;
+    }
+
+    .header-cantidad-moneda {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .header-cantidad-mxn {
+      font-size: 0.4rem;
+      line-height: 0.6;
+    }
+
+    .header-cantidad-zeros {
+      font-size: 0.8rem;
+    }
+
+    .progreso {
+      display: flex;
+      flex-direction: column;
+      padding-top: 0.6rem;
+    }
+
+    .progreso-title {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 0.5rem;
+      align-items: flex-end;
+    }
+
+    .progreso-porcentaje {
+      font-size: 1.7rem;
+      font-weight: 600;
+      padding-left: 1rem;
+      margin-bottom: -0.3rem;
+    }
+
+    .progreso-dinero {
+      display: flex;
+      color: rgba(89, 89, 89);
+      align-items: flex-end;
+      font-weight: 600;
+    }
+
+    .progreso-signo {
+      font-size: 0.9rem;
+    }
+
+    .progreso-cantidad {
+      font-size: 2rem;
+      line-height: 0.9;
+    }
+
+    .progreso-moneda {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      line-height: 0.9;
+      text-align: center;
+    }
+
+    .progreso-mxn {
+      font-size: 0.5rem;
+    }
+
+    .progreso-zeros {
+      font-size: 1.1rem;
+    }
+
+    .progreso-barra {
+      position: relative;
+    }
+
+    .progreso-color {
+      height: 1.3rem;
+      z-index: 0;
+      position: absolute;
+      border-radius: 2rem;
+    }
+
+    .progreso-limite {
+      background-color: rgba(225, 225, 225);
+      height: 1.3rem;
+      z-index: 1;
+      border-radius: 2rem;
+    }
+
+    .progreso-footer {
+      font-weight: 600;
+      font-size: 1.2rem;
+      padding-left: 1rem;
+      padding-top: 0.4rem;
+    }
+
+    .icon {
+      font-size: 2.5rem;
+      margin-right: 0.5rem;
+      padding-top: 0.5rem;
+      padding-left: 0.3rem;
+    }
+
+    .color-purple {
+      color: rgba(190, 82, 128);
+    }
+
+    .bg-color-purple {
+      background-color: rgba(190, 82, 128);
+    }
+
+    .color-orange {
+      color: #ff8029;
+    }
+
+    .bg-color-orange {
+      background-color: #ff8029;
+    }
+
+    .color-yellow {
+      color: #fac310;
+    }
+
+    .bg-color-yellow {
+      background-color: #fac310;
+    }
+
+    .color-red {
+      color: #ea4061;
+    }
+
+    .bg-color-red {
+      background-color: #ea4061;
+    }
+
+    .width-0 {
+      width: 0%;
+    }
+    .width-5 {
+      width: 5%;
+    }
+    .width-10 {
+      width: 10%;
+    }
+    .width-15 {
+      width: 15%;
+    }
+    .width-20 {
+      width: 20%;
+    }
+    .width-25 {
+      width: 25%;
+    }
+    .width-30 {
+      width: 30%;
+    }
+    .width-35 {
+      width: 35%;
+    }
+    .width-40 {
+      width: 40%;
+    }
+    .width-45 {
+      width: 45%;
+    }
+    .width-50 {
+      width: 50%;
+    }
+    .width-55 {
+      width: 55%;
+    }
+    .width-60 {
+      width: 60%;
+    }
+    .width-65 {
+      width: 65%;
+    }
+    .width-70 {
+      width: 70%;
+    }
+    .width-75 {
+      width: 75%;
+    }
+    .width-80 {
+      width: 80%;
+    }
+    .width-85 {
+      width: 85%;
+    }
+    .width-90 {
+      width: 90%;
+    }
+    .width-95 {
+      width: 95%;
+    }
+    .width-100 {
+      width: 100%;
+    }
+  </style>
+
+  <body>
+    <div class="card">
+      <div class="header">
+        <div>
+          <i class="fas {{icon}} icon {{color}}"> </i>
+        </div>
+        <div class="header-text">
+          <div class="header-text-title {{color}}">{{category}}</div>
+          <div class="header-text-subtitle">
+            <div class="header-text-presupuesto">Presupuesto</div>
+            <div class="header-text-cantidad">
+              <div class="header-cantidad-signo">$</div>
+              <div class="header-cantidad-cantidad">{{presupuesto}}</div>
+              <div class="header-cantidad-moneda">
+                <div class="header-cantidad-mxn">MXN</div>
+                <div class="header-cantidad-zeros">.00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="progreso">
+        <div class="progreso-title">
+          <div class="progreso-porcentaje {{color}}">{{porcentaje}}%</div>
+          <div class="progreso-dinero">
+            <div class="progreso-signo">$</div>
+            <div class="progreso-cantidad">{{gastado}}</div>
+            <div class="progreso-moneda">
+              <div class="progreso-mxn">MXN</div>
+              <div class="progreso-zeros">.00</div>
+            </div>
+          </div>
+        </div>
+        <div class="progreso-barra">
+          <div class="progreso-color {{ bgcolor }} {{width}}"></div>
+          <div class="progreso-limite"></div>
+        </div>
+        <div class="progreso-footer {{color}}">Gastado</div>
+      </div>
+    </div>
+  </body>
+</html>

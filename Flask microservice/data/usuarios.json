@@ -1,6 +1,6 @@
 [
   {
-    "_userId": "1234",
+    "userId": "1234",
     "Nombre": "Juan Perez",
     "Alias": "Juan",
     "Tarjetas": [
@@ -19,27 +19,14 @@
         "lineaCredito": null
       }
     ],
-    "Presupuestos": [
-      {
-        "categoria": "transporte",
-        "limite": 3000
-      },
-      {
-        "categoria": "comida",
-        "limite": 2500
-      },
-      {
-        "categoria": "renta",
-        "limite": 4000
-      },
-      {
-        "categoria": "diversion",
-        "limite": 2800
-      }
-    ]
+    "Presupuestos": {
+      "Transport": 3500,
+      "Food": 3200,
+      "Entertainment": 2800
+    }
   },
   {
-    "_userId": "5678",
+    "userId": "5678",
     "Nombre": "Roberto Fernandez",
     "Alias": "Roberto",
     "Tarjetas": [
@@ -65,27 +52,14 @@
         "lineaCredito": null
       }
     ],
-    "Presupuestos": [
-      {
-        "categoria": "transporte",
-        "limite": 3000
-      },
-      {
-        "categoria": "comida",
-        "limite": 2500
-      },
-      {
-        "categoria": "renta",
-        "limite": 4000
-      },
-      {
-        "categoria": "diversion",
-        "limite": 2800
-      }
-    ]
+    "Presupuestos": {
+      "Transport": 3200,
+      "Food": 3500,
+      "Entertainment": 2800
+    }
   },
   {
-    "_userId": "9101",
+    "userId": "9101",
     "Nombre": "Carlos Ramirez",
     "Alias": "Carlos",
     "Tarjetas": [
@@ -111,23 +85,10 @@
         "lineaCredito": null
       }
     ],
-    "Presupuestos": [
-      {
-        "categoria": "transporte",
-        "limite": 3000
-      },
-      {
-        "categoria": "comida",
-        "limite": 2500
-      },
-      {
-        "categoria": "renta",
-        "limite": 4000
-      },
-      {
-        "categoria": "diversion",
-        "limite": 2800
-      }
-    ]
+    "Presupuestos": {
+      "Transport": 3200,
+      "Food": 3500,
+      "Entertainment": 2800
+    }
   }
 ]

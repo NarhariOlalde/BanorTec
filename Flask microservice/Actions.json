@@ -1,0 +1,10 @@
+{
+  "generic": [
+    {
+      "user_defined": {
+        "user_defined_type": "currency_exchange_input"
+      },
+      "response_type": "user_defined"
+    }
+  ]
+}

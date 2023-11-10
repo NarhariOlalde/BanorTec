@@ -4,9 +4,11 @@ import random
 def generate_random_user():
     filename = "data/usuarios.json"
     users = read_json_from_file(filename)
+    user = users[random.randint(0, 2)]
 
     return {
-        "CreatedUser" : users[random.randint(0, 2)]["_userId"],
+        "userId": user["userId"],
+        "userName" : user["Alias"],
     }
 
 def get_user(userId):
