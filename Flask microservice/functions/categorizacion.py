@@ -48,19 +48,40 @@ cos = boto3.client(
 #     endpoint_url=COS_ENDPOINT
 # )
 
-def gasto_mensual(categoria, mes):
+def gasto_mensual(categoria, mes, userId):
     # Read file
     file = "../DataClusterMCC/test_dataset_with_predictions.csv"
     df = pd.read_csv(file)
 
+    # Traducir categorias
+    translation_dict = {
+        "Comida": "Food",
+        "Transporte": "Transport"
+    }
+    categoria = translation_dict[categoria]
+
     # Filters
     filtro_mes = df[df['FEC_PROC'].str.contains(mes)]
     filtro_categoria = filtro_mes[filtro_mes['Predicted_Category'] == categoria]
-    monto_total = sum(filtro_categoria['IMP_DES'].tolist())
+    monto_total = math.ceil(sum(filtro_categoria['IMP_DES'].tolist()) / 10)
+
+    # Obtener la salud financiera por una categoria
+    user = get_user(userId)
+    presupuesto = user["Presupuestos"][categoria]
+    estado = "buena"
+
+    if(monto_total / presupuesto > 0.95):
+        estado = "mala"
+    elif(monto_total / presupuesto > 85):
+        estado = "media"
+
+    gastosTotalesMes = math.ceil(sum(filtro_mes['IMP_DES'].tolist()) / 10)
 
     return {
-        "GastoMensual" : str(monto_total),
-        "Categoria": categoria
+        "Categoria": categoria,
+        "GastoMensual" : "{:,.0f}".format(monto_total),
+        "GastosTotales": "{:,.0f}".format(gastosTotalesMes),
+        "SaludFinanciera": estado
     }
 
 def generate_chart(mes):
@@ -158,15 +179,24 @@ def rounded_rectangle(draw, xy, corner_radius, fill=None, outline=None):
     draw.pieslice([(upper_left_point[0], bottom_right_point[1] - corner_radius*2), (upper_left_point[0] + corner_radius*2, bottom_right_point[1])], 90, 180, fill=fill, outline=outline)
     draw.pieslice([(bottom_right_point[0] - corner_radius*2, upper_left_point[1]), (bottom_right_point[0], upper_left_point[1] + corner_radius*2)], 270, 360, fill=fill, outline=outline)
 
-def crea_imagen_mes(categoria, mes, userId):
+def crea_imagen_mes(categoriasFlags, mes, userId):
+    categoriasFlags = [categoriasFlags[0]["value"]]
+    
+    # Traducir categorias
+    translation_dict = {
+        "Comida": "Food",
+        "Transporte": "Transport"
+    }
+    english_words = [translation_dict[word] for word in categoriasFlags if word in translation_dict]
+    categoriasFlags = english_words
+
     categorias = {
-        "Food": {"category": "Comida", "icon": "fa-utensils", "color": "color-orange", "bgcolor": "bg-color-orange"},
-        "Transport": {"category": "Transporte", "icon": "fa-bus", "color": "color-purple", "bgcolor": "bg-color-purple"}, 
+        "Food": {"category": "Comida", "icon": "faUtensils", "color": "rgb(255, 128, 41)"},
+        "Transport": {"category": "Transporte", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
     }
 
-    # Obtener el presupuesto de la catergoria
+    # Obtener el presupuesto de la categoria
     user = get_user(userId)
-    presupuesto = user["Presupuestos"][categoria]
 
     # Read file
     file = "../DataClusterMCC/test_dataset_with_predictions.csv"
@@ -174,30 +204,27 @@ def crea_imagen_mes(categoria, mes, userId):
 
     # Filtro de mes
     filtro_mes = df[df['FEC_PROC'].str.contains(mes, na=False)]
-    
-    # Filtro de categoria para conocer el valor total
-    filtro_categoria = filtro_mes[filtro_mes['Predicted_Category'] == categoria]
-    gastado = sum(filtro_categoria['IMP_DES'].tolist()) / 10 # TODO: Remove the /10
 
-    porcentaje = math.ceil((gastado / presupuesto) * 100)
-    width = "width-" + str(math.ceil(porcentaje / 5.0) * 5)
+    gastosPorCategoria = []
 
-    html_string = render_template('progreso/progreso.html',  category=categorias[categoria]["category"], presupuesto="{:,.0f}".format(presupuesto), gastado="{:,.0f}".format(gastado), porcentaje=porcentaje, icon=categorias[categoria]["icon"], color=categorias[categoria]["color"], bgcolor=categorias[categoria]["bgcolor"], width=width)
+    for categoria in categoriasFlags:
+        presupuesto = user["Presupuestos"][categoria]
 
-    # Convert HTML to image
-    # image_path = "output_image.jpg"
-    
-    # options = {
-    #     width: 1000  # or 'blink'
-    # }
-    # imgkit.from_string(html_string, image_path, options=options)
-    # percentage = 50
-    # budget = 1000
-    # spent = 500
-    # img = generate_progress_bar(percentage, budget, spent)
-    # img_stream = get_image_stream(img)
-    # return send_file(img_stream, mimetype='image/png')
-    return html_string
+        # Filtro de categoria para conocer el valor total
+        filtro_categoria = filtro_mes[filtro_mes['Predicted_Category'] == categoria]
+        gastado = sum(filtro_categoria['IMP_DES'].tolist()) / 10 # TODO: Remove the /10
+        porcentaje = str(math.ceil((gastado / presupuesto) * 100))
+
+        gastosPorCategoria.append({
+        "categoria" : categorias[categoria]["category"],
+        "presupuesto": "{:,.0f}".format(presupuesto),
+        "porcentaje": porcentaje,
+        "gastado": "{:,.0f}".format(gastado),
+        "color": categorias[categoria]["color"],
+        "icon": categorias[categoria]["icon"]
+    })
+
+    return gastosPorCategoria
 
 def generate_progress_bar(percentage, budget, spent):
     # Dimensions

@@ -21,7 +21,7 @@
     ],
     "Presupuestos": {
       "Transport": 3500,
-      "Food": 3200,
+      "Food": 5000,
       "Entertainment": 2800
     }
   },
@@ -53,8 +53,8 @@
       }
     ],
     "Presupuestos": {
-      "Transport": 3200,
-      "Food": 3500,
+      "Transport": 4000,
+      "Food": 5000,
       "Entertainment": 2800
     }
   },
@@ -86,8 +86,8 @@
       }
     ],
     "Presupuestos": {
-      "Transport": 3200,
-      "Food": 3500,
+      "Transport": 2500,
+      "Food": 4800,
       "Entertainment": 2800
     }
   }

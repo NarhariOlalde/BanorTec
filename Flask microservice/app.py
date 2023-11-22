@@ -2,12 +2,9 @@ from helpers.users import generate_random_user, get_user, read_json_from_file
 from functions.categorizacion import gasto_mensual, generate_chart, crea_imagen_mes
 from functions.proponerAlternativas import check_card
 from functions.recordatorios import recordatorioAutomatico, recordatorioManual, tarjetasDisponibles
-<<<<<<< HEAD
 from flask import Flask, request, render_template, send_file
-=======
 from functions.saludFinanciera import saludFinanciera
 from flask import Flask, request
->>>>>>> 30d15b0122577a0baf9544b2ef9b5bb4c2541730
 
 app = Flask(__name__, template_folder='templates')
 app.static_folder = 'static'
@@ -46,21 +43,22 @@ def get_gasto_mensual():
     data = request.json
     categoria = data.get('categoria')
     mes = data.get('mes')
-    return gasto_mensual(categoria, mes)
+    userId = data.get('userId')
+
+    return gasto_mensual(categoria, mes, userId)
 
 @app.route('/crea_imagen_mes', methods=['POST'])
 def get_imagen_mes():
     data = request.json
-    categoria = data.get('categoria')
+    categorias = data.get('categorias')
     mes = data.get('mes')
     userId = data.get('userId')
 
-    return crea_imagen_mes(categoria, mes, userId)
+    return crea_imagen_mes(categorias, mes, userId)
 
 @app.route('/salud_financiera', methods=['POST'])
 def get_salud_financiera():
     return saludFinanciera()
-
 
 # Helper functions
 @app.route('/genera_usuario', methods=['POST'])

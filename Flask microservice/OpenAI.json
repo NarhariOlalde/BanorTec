@@ -233,6 +233,10 @@
                   "mes": {
                     "type": "string",
                     "description": "Mes a elegir"
+                  },
+                  "userId": {
+                    "type": "string",
+                    "description": "Usuario"
                   }
                 },
                 "required": ["input_data"]
@@ -250,11 +254,19 @@
                   "properties": {
                     "GastoMensual": {
                       "type": "string",
-                      "description": "The status of the http request"
+                      "description": "Gastos mensual de la categoria"
                     },
                     "Categoria": {
                       "type": "string",
-                      "description": "The URL of the chart image"
+                      "description": "Categoria seleccionada"
+                    },
+                    "GastosTotales": {
+                      "type": "string",
+                      "description": "Gastos totales de la categoria"
+                    },
+                    "SaludFinanciera": {
+                      "type": "string",
+                      "description": "Estado de la salud financiera"
                     }
                   }
                 }
@@ -363,11 +375,91 @@
           }
         }
       }
+    },
+    "/crea_imagen_mes": {
+      "post": {
+        "summary": "Obten lo gastado de un mes para N categorias",
+        "description": "Endpoint para una categoria en un mes",
+        "requestBody": {
+          "description": "none",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "string",
+                    "description": "Gategoria de gasto mensual"
+                  },
+                  "categorias": {
+                    "type": "string",
+                    "description": "Gategoria de gasto mensual"
+                  },
+                  "mes": {
+                    "type": "string",
+                    "description": "Mes a elegir"
+                  }
+                },
+                "required": ["input_data"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful prediction",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "categoria": {
+                        "type": "string",
+                        "description": "Categoria"
+                      },
+                      "presupuesto": {
+                        "type": "string",
+                        "description": "Presupuesto"
+                      },
+                      "porcentaje": {
+                        "type": "string",
+                        "description": "Porcentaje"
+                      },
+                      "gastado": {
+                        "type": "string",
+                        "description": "Gastado"
+                      },
+                      "color": {
+                        "type": "string",
+                        "description": "Color"
+                      },
+                      "icon": {
+                        "type": "string",
+                        "description": "Icon"
+                      }
+                    },
+                    "required": ["tarjeta", "cantidad"]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Data is missing or malformed."
+          },
+          "500": {
+            "description": "Server error."
+          }
+        }
+      }
     }
   },
   "servers": [
     {
-      "url": "https://78cc-131-178-102-160.ngrok-free.app",
+      "url": "https://f737-2806-2f0-4060-fc75-4952-cd24-d756-34c0.ngrok-free.app",
       "description": "Local Development Server"
     }
   ]

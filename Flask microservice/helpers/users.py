@@ -16,7 +16,7 @@ def get_user(userId):
     filename = "data/usuarios.json"
     users = read_json_from_file(filename)
     # Get the matching user
-    matching_user = [user for user in users if user["_userId"] == userId]
+    matching_user = [user for user in users if user["userId"] == userId]
     # Return user
     return matching_user[0]
 

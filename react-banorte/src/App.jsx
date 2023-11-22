@@ -5,6 +5,7 @@ import {
 } from "@ibm-watson/assistant-web-chat-react";
 import "./App.scss";
 import { ContentCarousel } from "./ContentCarousel.js";
+import { WidgetCategoria } from "./WidgetCategoria.js";
 
 /**
  * This example uses the `@ibm-watson/assistant-web-chat-react` library to import web chat into a React application.
@@ -57,19 +58,25 @@ function App() {
 
 function renderCustomResponse(event, webChatInstance) {
   const { message } = event.data;
-  // The "user_defined_type" property is just an example. It is not required or you can use any other property or
-  // condition you want here. This makes it easier to handle different response types if you have more than one
-  // custom response type.
+  // Muestra el carrusel de tarjetas
   if (
     message.user_defined &&
     message.user_defined.user_defined_type === "carousel"
   ) {
-    console.log("Se ejecuta el carrousel");
     return (
       <ContentCarousel message={message} webChatInstance={webChatInstance} />
     );
   }
-  return <div>Holi</div>;
+
+  // Muestra los widgets de gastos por categoria
+  if (
+    message.user_defined &&
+    message.user_defined.user_defined_type === "gasto categoria"
+  ) {
+    return (
+      <WidgetCategoria message={message} webChatInstance={webChatInstance} />
+    );
+  }
 }
 
 export default App;
