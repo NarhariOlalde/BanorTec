@@ -10,6 +10,7 @@ import { WidgetSaludFinanciera } from "./WidgetSaludFinanciera";
 import { WidgetTipFinanciero } from "./WidgetTipFinanciero";
 import { WidgetTarjetas } from "./WidgetTarjetas";
 import { WidgetEnviar } from "./WidgetEnviar";
+import { WidgetAlternativa } from "./WidgetAlternativa";
 
 /**
  * This example uses the `@ibm-watson/assistant-web-chat-react` library to import web chat into a React application.
@@ -120,6 +121,15 @@ function renderCustomResponse(event, webChatInstance) {
     message.user_defined.user_defined_type === "Tarjeta seleccionada"
   ) {
     return <WidgetEnviar message={message} webChatInstance={webChatInstance} />;
+  }
+
+  if (
+    message.user_defined &&
+    message.user_defined.user_defined_type === "Proponer alternativas"
+  ) {
+    return (
+      <WidgetAlternativa message={message} webChatInstance={webChatInstance} />
+    );
   }
 }
 

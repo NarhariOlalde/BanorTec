@@ -51,7 +51,7 @@ def recordatorioAutomatico():
     # print(f"El próximo pago se predice que será para el concepto: {categoria_predicha}")
 
     return {
-        "recordatorio": "Hola Jos, how es 26 de Febrero! ¿Quieres pagar $700.00 de 'Colegiatura Vale' como cada mes?"
+        "recordatorio": "Hola Jos, hoy es 26 de Febrero! ¿Quieres pagar $700.00 de 'Colegiatura Vale' como cada mes?"
     }
 
 def recordatorioManual():

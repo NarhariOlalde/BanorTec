@@ -309,6 +309,18 @@
                     "message": {
                       "type": "string",
                       "description": "The status of the http request"
+                    },
+                    "tarjetaNombre": {
+                      "type": "string",
+                      "description": "Nombre de la tarjeta"
+                    },
+                    "numero": {
+                      "type": "string",
+                      "description": "Numero de la tarjeta"
+                    },
+                    "saldo": {
+                      "type": "string",
+                      "description": "Saldo disponible en la tarjeta"
                     }
                   }
                 }
