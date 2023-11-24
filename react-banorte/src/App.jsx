@@ -6,6 +6,10 @@ import {
 import "./App.scss";
 import { ContentCarousel } from "./ContentCarousel.js";
 import { WidgetCategoria } from "./WidgetCategoria.js";
+import { WidgetSaludFinanciera } from "./WidgetSaludFinanciera";
+import { WidgetTipFinanciero } from "./WidgetTipFinanciero";
+import { WidgetTarjetas } from "./WidgetTarjetas";
+import { WidgetEnviar } from "./WidgetEnviar";
 
 /**
  * This example uses the `@ibm-watson/assistant-web-chat-react` library to import web chat into a React application.
@@ -76,6 +80,46 @@ function renderCustomResponse(event, webChatInstance) {
     return (
       <WidgetCategoria message={message} webChatInstance={webChatInstance} />
     );
+  }
+
+  if (
+    message.user_defined &&
+    message.user_defined.user_defined_type === "salud financiera"
+  ) {
+    return (
+      <WidgetSaludFinanciera
+        message={message}
+        webChatInstance={webChatInstance}
+      />
+    );
+  }
+
+  if (
+    message.user_defined &&
+    message.user_defined.user_defined_type === "tip financiero"
+  ) {
+    return (
+      <WidgetTipFinanciero
+        message={message}
+        webChatInstance={webChatInstance}
+      />
+    );
+  }
+
+  if (
+    message.user_defined &&
+    message.user_defined.user_defined_type === "tarjetas disponibles"
+  ) {
+    return (
+      <WidgetTarjetas message={message} webChatInstance={webChatInstance} />
+    );
+  }
+
+  if (
+    message.user_defined &&
+    message.user_defined.user_defined_type === "Tarjeta seleccionada"
+  ) {
+    return <WidgetEnviar message={message} webChatInstance={webChatInstance} />;
   }
 }
 

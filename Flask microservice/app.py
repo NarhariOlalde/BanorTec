@@ -3,7 +3,7 @@ from functions.categorizacion import gasto_mensual, generate_chart, crea_imagen_
 from functions.proponerAlternativas import check_card
 from functions.recordatorios import recordatorioAutomatico, recordatorioManual, tarjetasDisponibles
 from flask import Flask, request, render_template, send_file
-from functions.saludFinanciera import saludFinanciera
+from functions.saludFinanciera import saludFinanciera, tipFinanciero
 from flask import Flask, request
 
 app = Flask(__name__, template_folder='templates')
@@ -56,9 +56,23 @@ def get_imagen_mes():
 
     return crea_imagen_mes(categorias, mes, userId)
 
+# 4. Mejorar la salud financiera ///////////////////////
 @app.route('/salud_financiera', methods=['POST'])
 def get_salud_financiera():
-    return saludFinanciera()
+    data = request.json
+    userId = data.get('userId')
+    mes = data.get('mes')
+    costo = data.get('costo') # Costo del objeto a comprar
+
+    return saludFinanciera(userId, mes, costo)
+
+@app.route('/tip_financiero', methods=['POST'])
+def get_tip_financiero():
+    data = request.json
+    userId = data.get('userId')
+    estadoSalud = data.get('estadoSalud')
+
+    return tipFinanciero(userId, estadoSalud)
 
 # Helper functions
 @app.route('/genera_usuario', methods=['POST'])

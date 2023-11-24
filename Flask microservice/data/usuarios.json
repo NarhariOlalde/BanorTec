@@ -19,6 +19,7 @@
         "lineaCredito": null
       }
     ],
+    "IngresoMensual": 12800,
     "Presupuestos": {
       "Transport": 3500,
       "Food": 5000,
@@ -52,6 +53,7 @@
         "lineaCredito": null
       }
     ],
+    "IngresoMensual": 12800,
     "Presupuestos": {
       "Transport": 4000,
       "Food": 5000,
@@ -85,6 +87,7 @@
         "lineaCredito": null
       }
     ],
+    "IngresoMensual": 12800,
     "Presupuestos": {
       "Transport": 2500,
       "Food": 4800,
