@@ -2,16 +2,16 @@
   "openapi": "3.0.0",
   "info": {
     "version": "1.0.0",
-    "title": "OpenAI API",
-    "description": "API for making predictions."
+    "title": "Maya - API para bot de Practicantes",
+    "description": "API para alimentar las funcionalidades nuevas en Maya"
   },
   "paths": {
     "/recordatorioAutomatico": {
       "post": {
         "summary": "Recordatorio automatico",
-        "description": "Endpoint to make a prediction.",
+        "description": "Endpoint para generar un recordatorio automatico",
         "requestBody": {
-          "description": "Data needed to make a prediction",
+          "description": "Datos para generar el recordatorio automatico",
           "required": true,
           "content": {
             "application/json": {
@@ -24,7 +24,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successful prediction",
+            "description": "Respesta exitosa",
             "content": {
               "application/json": {
                 "schema": {
@@ -32,7 +32,7 @@
                   "properties": {
                     "recordatorio": {
                       "type": "string",
-                      "description": "The result of the prediction."
+                      "description": "Recordatorio"
                     }
                   }
                 }
@@ -40,10 +40,10 @@
             }
           },
           "400": {
-            "description": "Bad request. Data is missing or malformed."
+            "description": "Petición errónea. Faltan datos o están malformados"
           },
           "500": {
-            "description": "Server error."
+            "description": "Error de servidor"
           }
         }
       }
@@ -59,20 +59,14 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {
-                  "input_data": {
-                    "type": "string",
-                    "description": "Datos de entrada para el recordatorio"
-                  }
-                },
-                "required": ["input_data"]
+                "properties": {}
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Successful recordatorio",
+            "description": "Respuesta exitosa",
             "content": {
               "application/json": {
                 "schema": {
@@ -88,10 +82,10 @@
             }
           },
           "400": {
-            "description": "Bad request. Data is missing or malformed."
+            "description": "Petición errónea. Faltan datos o están malformados"
           },
           "500": {
-            "description": "Server error."
+            "description": "Error de servidor"
           }
         }
       }
@@ -99,7 +93,7 @@
     "/tarjetas": {
       "post": {
         "summary": "Tarjetas disponibles",
-        "description": "Endpoint para conocer las tarjetas disponibles",
+        "description": "Endpoint para mostrar las tarjetas disponibles",
         "requestBody": {
           "description": "Datos de las tarjetas",
           "required": true,
@@ -107,20 +101,14 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {
-                  "input_data": {
-                    "type": "string",
-                    "description": "Datos de entrada para el recordatorio"
-                  }
-                },
-                "required": ["input_data"]
+                "properties": {}
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Successful connection",
+            "description": "Respuesta exitosa",
             "content": {
               "application/json": {
                 "schema": {
@@ -130,15 +118,15 @@
                     "properties": {
                       "tarjeta": {
                         "type": "string",
-                        "description": "Description for tarjeta property"
+                        "description": "Nombre de la tarjeta"
                       },
                       "disponible": {
                         "type": "string",
-                        "description": "Description for cantidad property"
+                        "description": "Saldo disponible en la tarjeta"
                       },
                       "Numero": {
                         "type": "string",
-                        "description": "Description for cantidad property"
+                        "description": "Número de la tarjeta"
                       }
                     },
                     "required": ["tarjeta", "cantidad"]
@@ -148,10 +136,10 @@
             }
           },
           "400": {
-            "description": "Bad request. Data is missing or malformed."
+            "description": "Petición errónea. Faltan datos o están malformados"
           },
           "500": {
-            "description": "Server error."
+            "description": "Error del servidor"
           }
         }
       }
@@ -173,14 +161,14 @@
                     "description": "Mes a elegir"
                   }
                 },
-                "required": ["input_data"]
+                "required": ["mes"]
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Successful prediction",
+            "description": "Respuesta exitosa",
             "content": {
               "application/json": {
                 "schema": {
@@ -188,11 +176,11 @@
                   "properties": {
                     "status": {
                       "type": "string",
-                      "description": "The status of the http request"
+                      "description": "Estatus de la carga de imagen"
                     },
                     "url": {
                       "type": "string",
-                      "description": "The URL of the chart image"
+                      "description": "URL de la imagen"
                     }
                   }
                 }
@@ -200,10 +188,10 @@
             }
           },
           "400": {
-            "description": "Bad request. Data is missing or malformed."
+            "description": "Petición errónea. Faltan datos o están malformados"
           },
           "500": {
-            "description": "Server error."
+            "description": "Error del servidor"
           }
         }
       }
@@ -222,7 +210,7 @@
                 "properties": {
                   "categoria": {
                     "type": "string",
-                    "description": "Gategoria de gasto mensual"
+                    "description": "Categoria de gasto mensual"
                   },
                   "mes": {
                     "type": "string",
@@ -230,17 +218,17 @@
                   },
                   "userId": {
                     "type": "string",
-                    "description": "Usuario"
+                    "description": "ID del usuario"
                   }
                 },
-                "required": ["input_data"]
+                "required": ["categoria", "mes", "userId"]
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Successful prediction",
+            "description": "Respuesta exitosa",
             "content": {
               "application/json": {
                 "schema": {
@@ -268,10 +256,10 @@
             }
           },
           "400": {
-            "description": "Bad request. Data is missing or malformed."
+            "description": "Petición errónea. Faltan datos o están malformados"
           },
           "500": {
-            "description": "Server error."
+            "description": "Error del servidor"
           }
         }
       }
@@ -290,7 +278,7 @@
                 "properties": {
                   "_userId": {
                     "type": "string",
-                    "description": "ID unico del usuario"
+                    "description": "ID único del usuario"
                   }
                 },
                 "required": ["_userId"]
@@ -300,7 +288,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successful prediction",
+            "description": "Respuesta exitosa",
             "content": {
               "application/json": {
                 "schema": {
@@ -308,7 +296,7 @@
                   "properties": {
                     "message": {
                       "type": "string",
-                      "description": "The status of the http request"
+                      "description": "Mensaje sobre la tarjeta"
                     },
                     "tarjetaNombre": {
                       "type": "string",
@@ -328,10 +316,10 @@
             }
           },
           "400": {
-            "description": "Bad request. Data is missing or malformed."
+            "description": "Petición errónea. Faltan datos o están malformados"
           },
           "500": {
-            "description": "Server error."
+            "description": "Error del servidor"
           }
         }
       }
@@ -354,7 +342,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successful prediction",
+            "description": "Respuesta exitosa",
             "content": {
               "application/json": {
                 "schema": {
@@ -374,10 +362,10 @@
             }
           },
           "400": {
-            "description": "Bad request. Data is missing or malformed."
+            "description": "Petición errónea. Faltan datos o están malformados"
           },
           "500": {
-            "description": "Server error."
+            "description": "Error del servidor"
           }
         }
       }
@@ -407,14 +395,14 @@
                     "description": "Mes a elegir"
                   }
                 },
-                "required": ["input_data"]
+                "required": ["userId", "categorias", "mes"]
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Successful prediction",
+            "description": "Respuesta exitosa",
             "content": {
               "application/json": {
                 "schema": {
@@ -444,20 +432,19 @@
                       },
                       "icon": {
                         "type": "string",
-                        "description": "Icon"
+                        "description": "Icono"
                       }
-                    },
-                    "required": ["tarjeta", "cantidad"]
+                    }
                   }
                 }
               }
             }
           },
           "400": {
-            "description": "Bad request. Data is missing or malformed."
+            "description": "Petición errónea. Faltan datos o están malformados"
           },
           "500": {
-            "description": "Server error."
+            "description": "Error del servidor"
           }
         }
       }
@@ -487,14 +474,14 @@
                     "description": "costo"
                   }
                 },
-                "required": ["input_data"]
+                "required": ["userId", "mes", "costo"]
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Successful prediction",
+            "description": "Respuesta exitosa",
             "content": {
               "application/json": {
                 "schema": {
@@ -530,10 +517,10 @@
             }
           },
           "400": {
-            "description": "Bad request. Data is missing or malformed."
+            "description": "Petición errónea. Faltan datos o están malformados"
           },
           "500": {
-            "description": "Server error."
+            "description": "Error en el servidor"
           }
         }
       }
@@ -559,14 +546,14 @@
                     "description": "estado de salud financiero"
                   }
                 },
-                "required": ["input_data"]
+                "required": ["userId", "estadoSalud"]
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Successful prediction",
+            "description": "Respuesta exitosa",
             "content": {
               "application/json": {
                 "schema": {
@@ -574,7 +561,7 @@
                   "properties": {
                     "tip": {
                       "type": "string",
-                      "description": "tip financiero"
+                      "description": "Mensaje del tip financiero"
                     },
                     "mensajeWidget": {
                       "type": "string",
@@ -586,10 +573,10 @@
             }
           },
           "400": {
-            "description": "Bad request. Data is missing or malformed."
+            "description": "Petición errónea. Faltan datos o están malformados"
           },
           "500": {
-            "description": "Server error."
+            "description": "Respuesta exitosa"
           }
         }
       }
@@ -598,7 +585,7 @@
   "servers": [
     {
       "url": "https://f737-2806-2f0-4060-fc75-4952-cd24-d756-34c0.ngrok-free.app",
-      "description": "Local Development Server"
+      "description": "Servidor local de desarrollo"
     }
   ]
 }

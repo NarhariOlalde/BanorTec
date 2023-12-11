@@ -50,15 +50,8 @@ cos = boto3.client(
 
 def gasto_mensual(categoria, mes, userId):
     # Read file
-    file = "../DataClusterMCC/test_dataset_with_predictions.csv"
+    file = "./data/test_dataset_with_predictions.csv"
     df = pd.read_csv(file)
-
-    # Traducir categorias
-    translation_dict = {
-        "Comida": "Food",
-        "Transporte": "Transport"
-    }
-    categoria = translation_dict[categoria]
 
     # Filters
     filtro_mes = df[df['FEC_PROC'].str.contains(mes)]
@@ -86,12 +79,12 @@ def gasto_mensual(categoria, mes, userId):
 
 def generate_chart(mes):
     # Read file
-    file = "../DataClusterMCC/test_dataset_with_predictions.csv"
+    file = "./data/test_dataset_with_predictions.csv"
     df = pd.read_csv(file)
     filtro_mes = df[df['FEC_PROC'].str.contains(mes)]
 
     # Filtro de categoria
-    etiquetas = ["Food", "Transport", "Clothes", "Health", "Entertainment", "Technology", "Services", "Viajes", "Casa", "Vehiculo", "Departamental", "Super", "Mascotas", "Deportes", "Educacion", "Belleza", "Compras en Linea", "Otros"]
+    etiquetas = ["Comida", "Transporte", "Ropa", "Salud", "Entretenimiento", "Tecnologia", "Servicios", "Viajes", "Casa", "Vehiculo", "Departamental", "Super", "Mascotas", "Deportes", "Educacion", "Belleza", "Compras en Linea", "Otros"]
     categorias = [{"categoria": categoria, "count": 0} for categoria in etiquetas]
 
     for index, obj in enumerate(categorias):
@@ -181,25 +174,34 @@ def rounded_rectangle(draw, xy, corner_radius, fill=None, outline=None):
 
 def crea_imagen_mes(categoriasFlags, mes, userId):
     categoriasFlags = [categoriasFlags[0]["value"]]
-    
-    # Traducir categorias
-    translation_dict = {
-        "Comida": "Food",
-        "Transporte": "Transport"
-    }
-    english_words = [translation_dict[word] for word in categoriasFlags if word in translation_dict]
-    categoriasFlags = english_words
 
     categorias = {
-        "Food": {"category": "Comida", "icon": "faUtensils", "color": "rgb(255, 128, 41)"},
-        "Transport": {"category": "Transporte", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
+        "Comida": {"category": "Comida", "icon": "faUtensils", "color": "rgb(255, 128, 41)"},
+        "Transporte": {"category": "Transporte", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
+
+        "Ropa": {"category": "Ropa", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
+        "Salud": {"category": "Salud", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
+        "Entretenimiento": {"category": "Entretenimiento", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
+        "Tecnologia": {"category": "Tecnologia", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
+        "Servicios": {"category": "Servicios", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
+        "Viajes": {"category": "Viajes", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
+        "Casa": {"category": "Casa", "icon": "faBus", "color": "rgba(190, 82, 128)"},
+        "Vehiculo": {"category": "Vehiculo", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
+        "Departamental": {"category": "Departamental", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
+        "Super": {"category": "Super", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
+        "Mascotas": {"category": "Mascotas", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
+        "Deportes": {"category": "Deportes", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
+        "Educacion": {"category": "Educacion", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
+        "Belleza": {"category": "Belleza", "icon": "faBus", "color": "rgba(190, 82, 128)"},  
+        "Compras en Linea": {"category": "Compras en Linea", "icon": "faBus", "color": "rgba(190, 82, 128)"},  
+        "Otros": {"category": "Otros", "icon": "faBus", "color": "rgba(190, 82, 128)"},  
     }
 
     # Obtener el presupuesto de la categoria
     user = get_user(userId)
 
     # Read file
-    file = "../DataClusterMCC/test_dataset_with_predictions.csv"
+    file = "./data/test_dataset_with_predictions.csv"
     df = pd.read_csv(file)
 
     # Filtro de mes

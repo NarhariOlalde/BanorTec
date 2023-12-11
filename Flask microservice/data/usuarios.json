@@ -21,9 +21,9 @@
     ],
     "IngresoMensual": 12800,
     "Presupuestos": {
-      "Transport": 3500,
-      "Food": 5000,
-      "Entertainment": 2800
+      "Transporte": 3500,
+      "Comida": 5000,
+      "Entretenimiento": 2800
     }
   },
   {
@@ -55,9 +55,9 @@
     ],
     "IngresoMensual": 12800,
     "Presupuestos": {
-      "Transport": 4000,
-      "Food": 5000,
-      "Entertainment": 2800
+      "Transporte": 4000,
+      "Comida": 5000,
+      "Entretenimiento": 2800
     }
   },
   {
@@ -89,9 +89,9 @@
     ],
     "IngresoMensual": 12800,
     "Presupuestos": {
-      "Transport": 2500,
-      "Food": 4800,
-      "Entertainment": 2800
+      "Transporte": 2500,
+      "Comida": 4800,
+      "Entretenimiento": 2800
     }
   }
 ]
