@@ -50,7 +50,7 @@ const body = {
 };
 
 function WidgetTipFinanciero({ message, webChatInstance }) {
-  const mensaje = message.user_defined.data;
+  // const mensaje = message.user_defined.data;
 
   return (
     <div style={wrapper}>

@@ -119,12 +119,12 @@ const cardNumber = {
   fontSize: "16px",
 };
 
-const img = {
-  width: "40px",
-  position: "absolute",
-  bottom: "8px",
-  right: "8px",
-};
+// const img = {
+//   width: "40px",
+//   position: "absolute",
+//   bottom: "8px",
+//   right: "8px",
+// };
 
 function WidgetTarjetas({ message, webChatInstance }) {
   const tarjetas = message.user_defined.data;
