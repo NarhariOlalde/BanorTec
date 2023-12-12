@@ -1,20 +1,16 @@
 from helpers.users import get_user
-from flask import request, request, jsonify, send_file, render_template, redirect, url_for, Response
+from flask import jsonify
 import matplotlib.pyplot as plt
 import io
 import pandas as pd
-from selenium import webdriver
-import imgkit
-from PIL import Image, ImageDraw, ImageFont
+# from PIL import Image, ImageDraw, ImageFont
 import random
 import math
-import imgkit
 
 # AWS bucket
-import ibm_boto3
-from ibm_botocore.client import Config
-import boto3, botocore
-import os
+# import ibm_boto3
+# from ibm_botocore.client import Config
+import boto3
 
 # Connection to AWS 
 AWS_BUCKET_NAME="practicantesbucket"
@@ -143,6 +139,7 @@ def generate_chart(mes):
     # Uploda to AWS 
     imageName = f"chart-{random.randint(0, 10000000)}.png"
     success = upload_image(buf, imageName)
+    success = True
     url = f"https://practicantesbucket.s3.amazonaws.com/{imageName}"
 
     if success:
@@ -150,27 +147,27 @@ def generate_chart(mes):
     else:
         return jsonify({"error": "Failed to upload image"}), 500
 
-def rounded_rectangle(draw, xy, corner_radius, fill=None, outline=None):
-    upper_left_point = xy[0]
-    bottom_right_point = xy[1]
-    draw.rectangle(
-        [
-            (upper_left_point[0], upper_left_point[1] + corner_radius),
-            (bottom_right_point[0], bottom_right_point[1] - corner_radius)
-        ],
-        fill=fill, outline=outline
-    )
-    draw.rectangle(
-        [
-            (upper_left_point[0] + corner_radius, upper_left_point[1]),
-            (bottom_right_point[0] - corner_radius, bottom_right_point[1])
-        ],
-        fill=fill, outline=outline
-    )
-    draw.pieslice([upper_left_point, (upper_left_point[0] + corner_radius*2, upper_left_point[1] + corner_radius*2)], 180, 270, fill=fill, outline=outline)
-    draw.pieslice([(bottom_right_point[0] - corner_radius*2, bottom_right_point[1] - corner_radius*2), bottom_right_point], 0, 90, fill=fill, outline=outline)
-    draw.pieslice([(upper_left_point[0], bottom_right_point[1] - corner_radius*2), (upper_left_point[0] + corner_radius*2, bottom_right_point[1])], 90, 180, fill=fill, outline=outline)
-    draw.pieslice([(bottom_right_point[0] - corner_radius*2, upper_left_point[1]), (bottom_right_point[0], upper_left_point[1] + corner_radius*2)], 270, 360, fill=fill, outline=outline)
+# def rounded_rectangle(draw, xy, corner_radius, fill=None, outline=None):
+#     upper_left_point = xy[0]
+#     bottom_right_point = xy[1]
+#     draw.rectangle(
+#         [
+#             (upper_left_point[0], upper_left_point[1] + corner_radius),
+#             (bottom_right_point[0], bottom_right_point[1] - corner_radius)
+#         ],
+#         fill=fill, outline=outline
+#     )
+#     draw.rectangle(
+#         [
+#             (upper_left_point[0] + corner_radius, upper_left_point[1]),
+#             (bottom_right_point[0] - corner_radius, bottom_right_point[1])
+#         ],
+#         fill=fill, outline=outline
+#     )
+#     draw.pieslice([upper_left_point, (upper_left_point[0] + corner_radius*2, upper_left_point[1] + corner_radius*2)], 180, 270, fill=fill, outline=outline)
+#     draw.pieslice([(bottom_right_point[0] - corner_radius*2, bottom_right_point[1] - corner_radius*2), bottom_right_point], 0, 90, fill=fill, outline=outline)
+#     draw.pieslice([(upper_left_point[0], bottom_right_point[1] - corner_radius*2), (upper_left_point[0] + corner_radius*2, bottom_right_point[1])], 90, 180, fill=fill, outline=outline)
+#     draw.pieslice([(bottom_right_point[0] - corner_radius*2, upper_left_point[1]), (bottom_right_point[0], upper_left_point[1] + corner_radius*2)], 270, 360, fill=fill, outline=outline)
 
 def crea_imagen_mes(categoriasFlags, mes, userId):
     categoriasFlags = [categoriasFlags[0]["value"]]
@@ -228,37 +225,37 @@ def crea_imagen_mes(categoriasFlags, mes, userId):
 
     return gastosPorCategoria
 
-def generate_progress_bar(percentage, budget, spent):
-    # Dimensions
-    width, height = 400, 120
-    progress_height = 30
-    corner_radius = 15
+# def generate_progress_bar(percentage, budget, spent):
+#     # Dimensions
+#     width, height = 400, 120
+#     progress_height = 30
+#     corner_radius = 15
 
-    # Create a new image with white background
-    img = Image.new('RGB', (width, height), color = 'white')
-    draw = ImageDraw.Draw(img)
+#     # Create a new image with white background
+#     img = Image.new('RGB', (width, height), color = 'white')
+#     draw = ImageDraw.Draw(img)
 
-    # Draw the progress bar background with rounded corners
-    rounded_rectangle(draw, [10, height/2 - progress_height/2, width-10, height/2 + progress_height/2], corner_radius, fill="lightgray")
+#     # Draw the progress bar background with rounded corners
+#     rounded_rectangle(draw, [10, height/2 - progress_height/2, width-10, height/2 + progress_height/2], corner_radius, fill="lightgray")
 
-    # Draw the progress with rounded corners
-    progress_width = (width-20) * (percentage / 100.0)
-    if progress_width > corner_radius * 2:
-        rounded_rectangle(draw, [10, height/2 - progress_height/2, 10 + progress_width, height/2 + progress_height/2], corner_radius, fill="orange")
-    else:
-        draw.rectangle([10, height/2 - progress_height/2, 10 + progress_width, height/2 + progress_height/2], fill="orange")
+#     # Draw the progress with rounded corners
+#     progress_width = (width-20) * (percentage / 100.0)
+#     if progress_width > corner_radius * 2:
+#         rounded_rectangle(draw, [10, height/2 - progress_height/2, 10 + progress_width, height/2 + progress_height/2], corner_radius, fill="orange")
+#     else:
+#         draw.rectangle([10, height/2 - progress_height/2, 10 + progress_width, height/2 + progress_height/2], fill="orange")
 
-    # Load a font
-    font = ImageFont.truetype("arial.ttf", 25)
+#     # Load a font
+#     font = ImageFont.truetype("arial.ttf", 25)
 
-    # Draw text
-    draw.text((10, 10), "Comida", fill="black", font=font)
-    draw.text((10, 40), f"Presupuesto ${budget}", fill="black", font=font)
-    draw.text((width-100, 10), f"{percentage}%", fill="black", font=font)
-    draw.text((width-100, 40), f"${spent}", fill="black", font=font)
-    draw.text((10, height-40), "Gastado", fill="black", font=font)
+#     # Draw text
+#     draw.text((10, 10), "Comida", fill="black", font=font)
+#     draw.text((10, 40), f"Presupuesto ${budget}", fill="black", font=font)
+#     draw.text((width-100, 10), f"{percentage}%", fill="black", font=font)
+#     draw.text((width-100, 40), f"${spent}", fill="black", font=font)
+#     draw.text((10, height-40), "Gastado", fill="black", font=font)
 
-    return img
+#     return img
     
 # This function returns a BytesIO stream for Flask to serve
 def get_image_stream(img):
@@ -270,10 +267,10 @@ def get_image_stream(img):
 
 def upload_image(buf, filename):
     # Use the IBM Cloud Object Storage client (or any other client) to upload the buffered image
-    try:
+    # try:
         # Assuming you're using the IBM Cloud Object Storage client and the 'cos' client is initialized
-        cos.upload_fileobj(buf, AWS_BUCKET_NAME, filename)
-        return True
-    except Exception as e:
-        print(f"Error uploading file: {e}")
-        return False
+    cos.upload_fileobj(buf, AWS_BUCKET_NAME, filename)
+    return True
+    # except Exception as e:
+    #     print(f"Error uploading file: {e}")
+    #     return False

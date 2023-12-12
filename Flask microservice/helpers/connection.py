@@ -1,9 +1,9 @@
 import os
-import boto3, botocore
+# import boto3
 
 # IBM client
-import ibm_boto3
-from ibm_botocore.client import Config
+# import ibm_boto3
+# from ibm_botocore.client import Config
 
 # Setup IBM cloud object storage
 # COS_ENDPOINT = "cos://us-south/danielcustommodel-donotdelete-pr-wkzwnxz3qrox3j/"
@@ -28,20 +28,20 @@ AWS_SECRET_ACCESS_KEY="oy6qLpZldJ/2s69rRxNRskzIGZWeP07b4Bf1vNtP"
 AWS_DOMAIN="http://practicantesbucket.s3.amazonaws.com/"
 AWS_REGION_NAME="us-east-1"
 
-# Create an S3 client
-cos = boto3.client(
-    's3',
-    aws_access_key_id=AWS_ACCESS_KEY,
-    aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-    region_name=AWS_REGION_NAME
-)
+# # Create an S3 client
+# cos = boto3.client(
+#     's3',
+#     aws_access_key_id=AWS_ACCESS_KEY,
+#     aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+#     region_name=AWS_REGION_NAME
+# )
 
-def upload_image(buf, filename):
-    # Use the IBM Cloud Object Storage client (or any other client) to upload the buffered image
-    try:
-        # Assuming you're using the IBM Cloud Object Storage client and the 'cos' client is initialized
-        cos.upload_fileobj(buf, AWS_BUCKET_NAME, filename)
-        return True
-    except Exception as e:
-        print(f"Error uploading file: {e}")
-        return False
+# def upload_image(buf, filename):
+#     # Use the IBM Cloud Object Storage client (or any other client) to upload the buffered image
+#     try:
+#         # Assuming you're using the IBM Cloud Object Storage client and the 'cos' client is initialized
+#         cos.upload_fileobj(buf, AWS_BUCKET_NAME, filename)
+#         return True
+#     except Exception as e:
+#         print(f"Error uploading file: {e}")
+#         return False

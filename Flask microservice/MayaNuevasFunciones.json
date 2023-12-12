@@ -584,7 +584,7 @@
   },
   "servers": [
     {
-      "url": "https://f737-2806-2f0-4060-fc75-4952-cd24-d756-34c0.ngrok-free.app",
+      "url": "https://banorte-gamma.vercel.app/",
       "description": "Servidor local de desarrollo"
     }
   ]

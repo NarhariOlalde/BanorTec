@@ -79,6 +79,9 @@ def get_tip_financiero():
 def get_random_user():
     return generate_random_user()
 
+@app.route('/', methods=['GET'])
+def aaa():
+    return "Hello world"
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="localhost", port=3000, debug=True)

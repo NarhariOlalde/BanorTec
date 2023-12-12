@@ -7,7 +7,7 @@ def saludFinanciera(userId, mes, costo):
     user = get_user(userId)
 
     # Read file
-    file = "../DataClusterMCC/test_dataset_with_predictions.csv"
+    file = "./data/test_dataset_with_predictions.csv"
     df = pd.read_csv(file)
 
     # Filtro de mes

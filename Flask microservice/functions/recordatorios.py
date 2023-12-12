@@ -1,10 +1,10 @@
-import pandas as pd
-from sklearn.preprocessing import StandardScaler
-import tensorflow as tf
-import numpy as np
+# import pandas as pd
+# from sklearn.preprocessing import StandardScaler
+# import tensorflow as tf
+# import numpy as np
 
 # Load the model
-model = tf.keras.models.load_model('calendario/content/calendario-model')
+# model = tf.keras.models.load_model('calendario/content/calendario-model')
 
 def recordatorioAutomatico():
     # Preparar datos para la prediccion de un modelo
