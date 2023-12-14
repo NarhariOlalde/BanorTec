@@ -63,17 +63,17 @@ def tarjetasDisponibles():
     return [
         {
             "Tarjeta": "Oro",
-            "Disponible": "$9,000",
+            "Disponible": "9,000",
             "Numero": "****8090"
         },
         {
             "Tarjeta": "Enlace",
-            "Disponible": "$13,500",
+            "Disponible": "13,500",
             "Numero": "****1785"
         },
         {
             "Tarjeta": "Nómina",
-            "Disponible": "$2,500",
+            "Disponible": "2,500",
             "Numero": "****1234"
         }
     ]

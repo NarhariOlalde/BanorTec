@@ -158,6 +158,7 @@ function WidgetTarjetas({ message, webChatInstance }) {
         >
           {tarjetas.map((cardData) => {
             const { Tarjeta, Disponible, Numero } = cardData;
+            console.log(Disponible);
 
             return (
               <SwiperSlide className="swiper-slide" key={Numero}>
