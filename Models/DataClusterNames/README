@@ -1,0 +1,29 @@
+
+# README para BanorteModeloPrediccion.ipynb
+
+## Descripción General
+Este proyecto en Jupyter Notebook está diseñado para la manipulación y análisis de datos financieros. Utiliza técnicas de procesamiento de texto y clasificación para organizar y comprender mejor los datos relacionados con transacciones financieras. Se utiliza un Random Forest Classifier para clasificar los datos en categorías predefinidas, esto basado en el nombre donde se realizo una transaccion. 
+
+## Contenido del Notebook
+1. **Importación de Bibliotecas**: Importa bibliotecas necesarias como `csv`, `pandas`, `string`, `re`, `sklearn`, entre otras.
+2. **Lectura y Preprocesamiento de Datos**: Incluye pasos para cargar y preparar los datos para el análisis.
+3. **Análisis Exploratorio de Datos**: Sección para la exploración inicial de los datos.
+4. **Procesamiento de Texto y Clasificación**: Implementa métodos para procesar textos y clasificar datos basados en categorías predefinidas.
+5. **Modelado y Evaluación**: Contiene código para aplicar modelos de clasificación y evaluar su rendimiento.
+
+## Requisitos
+- Python 3.10 o superior.
+- Librerías: `pandas`, `numpy`, `sklearn`, `csv`, `string`, `re`, y otras mencionadas en el notebook.
+- Obtener los datos de transacciones financieras en formato .txt bajo el nombre datos_generales.txt en la msima carpeta que el notebook.
+
+## Instalación
+Para utilizar este notebook, asegúrate de tener instaladas todas las dependencias. Puedes instalar las librerías necesarias utilizando `pip`:
+```bash
+pip install pandas numpy sklearn re csv string
+```
+
+## Uso
+Para usar este notebook, simplemente ejecuta cada celda en Jupyter. Asegúrate de ajustar las rutas de los archivos y parámetros según tus necesidades.
+
+## Contribuir
+Siéntete libre de contribuir a este proyecto con mejoras, correcciones o nuevas funcionalidades.
