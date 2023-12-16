@@ -6,17 +6,17 @@ import { Tile, Button } from "carbon-components-react";
 import { useCallback, useState } from "react";
 import cx from "classnames";
 
-import everydayCard from "./assets/lendyr-everyday-card.jpg";
-import preferredCard from "./assets/lendyr-preferred-card.jpg";
-import topazCard from "./assets/lendyr-topaz-card.jpg";
+import tarjeta1 from "./assets/Banorte-TDC-Clasica-410x290.png";
+import tarjeta2 from "./assets/Banorte-TDC-Oro-410x290.png";
+import tarjeta3 from "./assets/Banorte_PorTi_410x290.png";
 
 // Normally these images would be hosted on an external server but we are just going to hard-code them into this
 // example to keep things simple. We're going to look at the hard-coded image data based on the URL that's returned
 // in the message data.
 const urlImageMap = new Map([
-  ["lendyr-everyday-card.jpg", everydayCard],
-  ["lendyr-preferred-card.jpg", preferredCard],
-  ["lendyr-topaz-card.jpg", topazCard],
+  ["lendyr-everyday-card.jpg", tarjeta1],
+  ["lendyr-preferred-card.jpg", tarjeta2],
+  ["lendyr-topaz-card.jpg", tarjeta3],
 ]);
 
 /**
@@ -69,29 +69,85 @@ function ContentCarousel({ message, webChatInstance }) {
 
             return (
               <SwiperSlide className="swiper-slide" key={url}>
-                <Tile className="Carousel__Card">
-                  <img className="Carousel__CardImage" src={image} alt={alt} />
-                  <div className="Carousel__CardText">
-                    <div className="Carousel__CardTitle">{title}</div>
-                    <div className="Carousel__CardDescription">
-                      {description}
+                <Tile
+                  className="Carousel__Card"
+                  style={{ position: "relative" }}
+                >
+                  <img
+                    className="Carousel__CardImage"
+                    style={{ transform: "scale(1.1) translateX(0.2rem)" }}
+                    src={image}
+                    alt={alt}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      fontSize: "1.2rem",
+                      top: "7.5rem",
+                      left: "1.5rem",
+                      color: "white",
+                      fontWeight: "800",
+                    }}
+                  >
+                    **** 1234
+                  </div>
+                  <div
+                    className="Carousel__CardText"
+                    style={{ marginTop: "-0.5rem" }}
+                  >
+                    <div
+                      className="Carousel__CardTitle"
+                      style={{ color: "#CF0A2D" }}
+                    >
+                      {title}
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "flex-end",
+                      }}
+                    >
+                      <div className="Carousel__CardDescription">
+                        {description}
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          color: "black",
+                          alignItems: "flex-end",
+                        }}
+                      >
+                        <div
+                          style={{ fontSize: "0.8rem", lineHeight: "0.6rem" }}
+                        >
+                          $
+                        </div>
+                        <div
+                          style={{
+                            fontSize: "1.6rem",
+                            padding: "0 0.2rem 0 0.1rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                          9,000
+                        </div>
+                        <div
+                          style={{ fontSize: "0.6rem", lineHeight: "0.6rem" }}
+                        >
+                          <div>MXN</div>
+                          <div>.00</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  {/* Here you would use a link to your own page that shows more details about this card. */}
-                  <a
-                    href="https://www.ibm.com"
-                    className="Carousel__CardButton bx--btn bx--btn--primary"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    View more details
-                  </a>
                   {/* This button will send a message to the assistant and web chat will respond with more info. */}
                   <Button
                     className="Carousel__CardButton Carousel__CardButtonMessage"
+                    style={{ backgroundColor: "#CF0A2D" }}
                     onClick={() => onCardClick(title)}
                   >
-                    Tell me more about this
+                    Seleccionar
                   </Button>
                 </Tile>
               </SwiperSlide>

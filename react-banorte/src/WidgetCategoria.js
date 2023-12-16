@@ -1,5 +1,22 @@
 import PropTypes from "prop-types";
 import { FaBus } from "react-icons/fa";
+import { MdFastfood } from "react-icons/md";
+import { IoShirtSharp } from "react-icons/io5";
+import { FaHeart } from "react-icons/fa";
+import { MdMovieCreation } from "react-icons/md";
+import { MdDevices } from "react-icons/md";
+import { MdMiscellaneousServices } from "react-icons/md";
+import { IoAirplaneSharp } from "react-icons/io5";
+import { FaHouseChimney } from "react-icons/fa6";
+import { FaCar } from "react-icons/fa";
+import { FaStore } from "react-icons/fa";
+import { IoStorefront } from "react-icons/io5";
+import { MdOutlinePets } from "react-icons/md";
+import { PiSoccerBallFill } from "react-icons/pi";
+import { IoSchool } from "react-icons/io5";
+import { FaSprayCan } from "react-icons/fa";
+import { FaCartPlus } from "react-icons/fa";
+import { FaInfoCircle } from "react-icons/fa";
 
 const wrapper = {
   margin: "0",
@@ -173,9 +190,7 @@ function WidgetCategoria({ message, webChatInstance }) {
         return (
           <div style={card}>
             <div style={header}>
-              <div>
-                <FaBus style={{ ...icon, ...{ color: categoria.color } }} />
-              </div>
+              <div>{renderIcon(categoria)}</div>
               <div style={headerText}>
                 <div
                   style={{ ...headerTextitle, ...{ color: categoria.color } }}
@@ -238,6 +253,50 @@ function WidgetCategoria({ message, webChatInstance }) {
       })}
     </div>
   );
+}
+
+function renderIcon(categoria) {
+  const style = { ...icon, ...{ color: categoria.color } };
+  switch (categoria.categoria) {
+    case "Transporte":
+      return <FaBus style={style} />;
+    case "Comida":
+      return <MdFastfood style={style} />;
+    case "Ropa":
+      return <IoShirtSharp style={style} />;
+    case "Salud":
+      return <FaHeart style={style} />;
+    case "Entretenimiento":
+      return <MdMovieCreation style={style} />;
+    case "Tecnologia":
+      return <MdDevices style={style} />;
+    case "Servicios":
+      return <MdMiscellaneousServices style={style} />;
+    case "Viajes":
+      return <IoAirplaneSharp style={style} />;
+    case "Casa":
+      return <FaHouseChimney style={style} />;
+    case "Vehiculo":
+      return <FaCar style={style} />;
+    case "Departamental":
+      return <FaStore style={style} />;
+    case "Super":
+      return <IoStorefront style={style} />;
+    case "Mascotas":
+      return <MdOutlinePets style={style} />;
+    case "Deportes":
+      return <PiSoccerBallFill style={style} />;
+    case "Educacion":
+      return <IoSchool style={style} />;
+    case "Belleza":
+      return <FaSprayCan style={style} />;
+    case "Compras en Linea":
+      return <FaCartPlus style={style} />;
+    case "Otros":
+      return <FaInfoCircle style={style} />;
+    default:
+      return <></>;
+  }
 }
 
 WidgetCategoria.propTypes = {

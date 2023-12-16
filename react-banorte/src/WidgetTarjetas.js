@@ -5,6 +5,7 @@ import { Navigation, Pagination, A11y } from "swiper";
 import { Button } from "carbon-components-react";
 import { useState } from "react";
 import cx from "classnames";
+import MasterCardLogo from "./assets/Mastercardlogo.png";
 
 /**
  * This is the component that renders our content carousel.
@@ -119,12 +120,12 @@ const cardNumber = {
   fontSize: "16px",
 };
 
-// const img = {
-//   width: "40px",
-//   position: "absolute",
-//   bottom: "8px",
-//   right: "8px",
-// };
+const img = {
+  width: "40px",
+  position: "absolute",
+  bottom: "8px",
+  right: "8px",
+};
 
 function WidgetTarjetas({ message, webChatInstance }) {
   const tarjetas = message.user_defined.data;
@@ -171,7 +172,11 @@ function WidgetTarjetas({ message, webChatInstance }) {
                   >
                     <div>
                       <h1 style={cardTitle}>{Tarjeta}</h1>
-                      <h5 style={cardSubtitle}>DIGITAL</h5>
+                      {Tarjeta === "Enlace" ? (
+                        <h5 style={cardSubtitle}>DIGITAL</h5>
+                      ) : (
+                        <></>
+                      )}
                     </div>
                   </div>
 
@@ -199,9 +204,7 @@ function WidgetTarjetas({ message, webChatInstance }) {
                     </div>
                   </div>
 
-                  {/* <div>
-            <img src="{{ url_for('static', filename='Mastercard-logo.svg') }}" alt="master-card" border="0">
-        </div> */}
+                  <img src={MasterCardLogo} style={img} alt="arrow" />
                 </div>
               </SwiperSlide>
             );
