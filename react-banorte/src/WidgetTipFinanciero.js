@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { FaLightbulb } from "react-icons/fa";
+import Tip from "./assets/tip.png";
 
 const wrapper = {
   margin: "0",
@@ -38,7 +39,7 @@ const headerTitle = {
 };
 
 const headerIcon = {
-  fontSize: "1.8rem",
+  width: "2.5rem",
 };
 
 const body = {
@@ -58,7 +59,7 @@ function WidgetTipFinanciero({ message, webChatInstance }) {
         <div style={header}>
           <div style={headerTitle}>Tip</div>
           <div style={headerIcon}>
-            <FaLightbulb style={headerIcon} />
+            <img src={Tip} style={headerIcon} alt="tip" />
           </div>
         </div>
         <div style={body}>Crece tus ahorros hasta 10% con una inversión</div>

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import { MdOutlineArrowForwardIos } from "react-icons/md";
-import { IoPerson } from "react-icons/io5";
+import Arrow from "./assets/arrow.png";
+import Perfil from "./assets/perfil.png";
 
 const wrapper = {
   margin: "0",
@@ -89,8 +89,7 @@ const dineroDigital = {
 };
 
 const icon = {
-  fontSize: "2rem",
-  color: "#E659AD",
+  width: "2rem",
 };
 
 const perfil = {
@@ -100,8 +99,8 @@ const perfil = {
 };
 
 const perfilFoto = {
-  fontSize: "4rem",
-  paddingBottom: "0.2rem",
+  width: "5rem",
+  paddingBottom: "0.5rem",
 };
 
 const perfilNombre = {
@@ -141,14 +140,18 @@ function WidgetEnviar({ message, webChatInstance }) {
           >
             <div style={dineroDesde}>desde</div>
             <div style={dineroTarjeta}>{nombreTarjeta}</div>
-            <div style={dineroDigital}>digital</div>
+            {nombreTarjeta === "Enlace" ? (
+              <div style={dineroDigital}>digital</div>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
 
-        <MdOutlineArrowForwardIos style={icon} />
+        <img src={Arrow} style={icon} alt="arrow" />
 
         <div style={perfil}>
-          <IoPerson style={perfilFoto} />
+          <img src={Perfil} style={perfilFoto} alt="perfil" />
           <div style={perfilNombre}>Valeria</div>
         </div>
       </div>

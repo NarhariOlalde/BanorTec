@@ -173,25 +173,24 @@ def crea_imagen_mes(categoriasFlags, mes, userId):
     categoriasFlags = [categoriasFlags[0]["value"]]
 
     categorias = {
-        "Comida": {"category": "Comida", "icon": "faUtensils", "color": "rgb(255, 128, 41)"},
-        "Transporte": {"category": "Transporte", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
-
-        "Ropa": {"category": "Ropa", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
-        "Salud": {"category": "Salud", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
-        "Entretenimiento": {"category": "Entretenimiento", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
-        "Tecnologia": {"category": "Tecnologia", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
-        "Servicios": {"category": "Servicios", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
-        "Viajes": {"category": "Viajes", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
-        "Casa": {"category": "Casa", "icon": "faBus", "color": "rgba(190, 82, 128)"},
-        "Vehiculo": {"category": "Vehiculo", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
-        "Departamental": {"category": "Departamental", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
-        "Super": {"category": "Super", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
-        "Mascotas": {"category": "Mascotas", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
-        "Deportes": {"category": "Deportes", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
-        "Educacion": {"category": "Educacion", "icon": "faBus", "color": "rgba(190, 82, 128)"}, 
-        "Belleza": {"category": "Belleza", "icon": "faBus", "color": "rgba(190, 82, 128)"},  
-        "Compras en Linea": {"category": "Compras en Linea", "icon": "faBus", "color": "rgba(190, 82, 128)"},  
-        "Otros": {"category": "Otros", "icon": "faBus", "color": "rgba(190, 82, 128)"},  
+        "Comida": {"category": "Comida", "color": "rgb(255, 128, 41)"},
+        "Transporte": {"category": "Transporte", "color": "rgba(190, 82, 128)"}, 
+        "Ropa": {"category": "Ropa", "color": "rgba(190, 82, 128)"}, 
+        "Salud": {"category": "Salud", "color": "rgba(190, 82, 128)"}, 
+        "Entretenimiento": {"category": "Entretenimiento", "color": "rgba(190, 82, 128)"}, 
+        "Tecnologia": {"category": "Tecnologia", "color": "rgba(190, 82, 128)"}, 
+        "Servicios": {"category": "Servicios", "color": "rgba(190, 82, 128)"}, 
+        "Viajes": {"category": "Viajes", "color": "rgba(190, 82, 128)"}, 
+        "Casa": {"category": "Casa", "color": "rgba(190, 82, 128)"},
+        "Vehiculo": {"category": "Vehiculo", "color": "rgba(190, 82, 128)"}, 
+        "Departamental": {"category": "Departamental", "color": "rgba(190, 82, 128)"}, 
+        "Super": {"category": "Super", "color": "rgba(190, 82, 128)"}, 
+        "Mascotas": {"category": "Mascotas", "color": "rgba(190, 82, 128)"}, 
+        "Deportes": {"category": "Deportes", "color": "rgba(190, 82, 128)"}, 
+        "Educacion": {"category": "Educacion", "color": "rgba(190, 82, 128)"}, 
+        "Belleza": {"category": "Belleza", "color": "rgba(190, 82, 128)"},  
+        "Compras en Linea": {"category": "Compras en Linea", "color": "rgba(190, 82, 128)"},  
+        "Otros": {"category": "Otros", "color": "rgba(190, 82, 128)"},  
     }
 
     # Obtener el presupuesto de la categoria
