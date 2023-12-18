@@ -35,4 +35,4 @@ npm run build
 La carpeta de modelos contiene sus propios archivos README.md, por lo que referirse a dicha carpeta para conocer los detalles
 
 ## Uso 
-Para realizar cambios en la API, componentes de React o modelos, referirse a la siguinete guía técnica:
+Para realizar cambios en la API, componentes de React o modelos, referirse a la siguiente guía técnica:
