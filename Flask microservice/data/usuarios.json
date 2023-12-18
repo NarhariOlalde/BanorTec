@@ -22,7 +22,7 @@
     "IngresoMensual": 20000,
     "Presupuestos": {
       "Transporte": 3500,
-      "Comida": 5000,
+      "Comida": 6000,
       "Entretenimiento": 2800
     }
   },
@@ -56,7 +56,7 @@
     "IngresoMensual": 18000,
     "Presupuestos": {
       "Transporte": 4000,
-      "Comida": 5000,
+      "Comida": 6000,
       "Entretenimiento": 2800
     }
   },
@@ -90,7 +90,7 @@
     "IngresoMensual": 15000,
     "Presupuestos": {
       "Transporte": 2500,
-      "Comida": 4800,
+      "Comida": 5800,
       "Entretenimiento": 2800
     }
   }
