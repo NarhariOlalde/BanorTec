@@ -6,6 +6,8 @@ import pandas as pd
 # from PIL import Image, ImageDraw, ImageFont
 import random
 import math
+import re
+
 
 # AWS bucket
 # import ibm_boto3
@@ -49,8 +51,16 @@ def gasto_mensual(categoria, mes, userId):
     file = "./data/test_dataset_with_predictions.csv"
     df = pd.read_csv(file)
 
-    # Filters
-    filtro_mes = df[df['FEC_PROC'].str.contains(mes)]
+    # Filtro de mes
+    pattern = r'enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre'
+
+    # Busca el mes o regresa el mes actual
+    match = re.search(pattern, mes, re.IGNORECASE)
+    if match:
+        filtro_mes = df[df['FEC_PROC'].str.contains(match.group()[:3].upper())]
+    else:
+        filtro_mes = df[df['FEC_PROC'].str.contains("NOV")]
+
     filtro_categoria = filtro_mes[filtro_mes['Predicted_Category'] == categoria]
     monto_total = math.ceil(sum(filtro_categoria['IMP_DES'].tolist()) / 10)
 
@@ -77,8 +87,19 @@ def generate_chart(mes):
     # Read file
     file = "./data/test_dataset_with_predictions.csv"
     df = pd.read_csv(file)
-    filtro_mes = df[df['FEC_PROC'].str.contains(mes)]
 
+    # Filtro de mes
+    pattern = r'enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre'
+
+    # Busca el mes especifico o regresa el actual
+    match = re.search(pattern, mes, re.IGNORECASE)
+    if match:
+        filtro_mes = df[df['FEC_PROC'].str.contains(match.group()[:3].upper())]
+        mes = match.group()[:3].upper()
+    else:
+        filtro_mes = df[df['FEC_PROC'].str.contains("NOV")]
+        mes = "NOV"
+    
     # Filtro de categoria
     etiquetas = ["Comida", "Transporte", "Ropa", "Salud", "Entretenimiento", "Tecnologia", "Servicios", "Viajes", "Casa", "Vehiculo", "Departamental", "Super", "Mascotas", "Deportes", "Educacion", "Belleza", "Compras en Linea", "Otros"]
     categorias = [{"categoria": categoria, "count": 0} for categoria in etiquetas]
@@ -201,7 +222,13 @@ def crea_imagen_mes(categoriasFlags, mes, userId):
     df = pd.read_csv(file)
 
     # Filtro de mes
-    filtro_mes = df[df['FEC_PROC'].str.contains(mes, na=False)]
+    pattern = r'enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre'
+    # Busca el mes especifico o regresa el actual
+    match = re.search(pattern, mes, re.IGNORECASE)
+    if match:
+        filtro_mes = df[df['FEC_PROC'].str.contains(match.group()[:3].upper())]
+    else:
+        filtro_mes = df[df['FEC_PROC'].str.contains("NOV")]
 
     gastosPorCategoria = []
 
@@ -219,7 +246,6 @@ def crea_imagen_mes(categoriasFlags, mes, userId):
         "porcentaje": porcentaje,
         "gastado": "{:,.0f}".format(gastado),
         "color": categorias[categoria]["color"],
-        "icon": categorias[categoria]["icon"]
     })
 
     return gastosPorCategoria
