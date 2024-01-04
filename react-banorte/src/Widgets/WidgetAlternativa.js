@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 
+// Estilos CSS para el componente
 const wrapper = {
   display: "flex",
   width: "100%",
@@ -127,6 +128,7 @@ const cardNumber = {
 };
 
 function WidgetAlternativa({ message, webChatInstance }) {
+  // Datos de la tarjeta del usuario
   const saldo = message.user_defined.saldo;
   const tarjeta = message.user_defined.tarjeta;
   const numero = message.user_defined.numero;

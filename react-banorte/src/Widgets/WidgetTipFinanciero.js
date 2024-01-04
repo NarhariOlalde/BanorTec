@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
-import { FaLightbulb } from "react-icons/fa";
-import Tip from "./assets/tip.png";
+import Tip from "../assets/tip.png";
 
+// Estilos CSS para el componente
 const wrapper = {
   margin: "0",
   padding: "0",
@@ -50,9 +50,8 @@ const body = {
   color: "#8B8B8B",
 };
 
+// Widget de Tip Financiero
 function WidgetTipFinanciero({ message, webChatInstance }) {
-  // const mensaje = message.user_defined.data;
-
   return (
     <div style={wrapper}>
       <div style={card}>

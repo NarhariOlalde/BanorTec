@@ -1,8 +1,3 @@
-// Swiper comes with its own styles, but those styles by themselves will be blocked by the reset styling of web chat.
-// To use Swiper from within web chat, all of its styles need to be prefixed with "#WACContainer.WACContainer". This
-// imports all of the Swiper styles and puts them under the web chat styles. You can also alternatively use web
-// components to isolate the styling of your custom response but you will lose any styling inherited from web chat if
-// you do that.
 #WACContainer.WACContainer {
   @import "node_modules/swiper/swiper";
 }
@@ -21,8 +16,6 @@
   max-width: 240px;
 }
 
-// All Carbon styles like .bx--tile or .bx--button are already available for use in web chat and will inherit any
-// theming properties you have set.
 #WACContainer.WACContainer .bx--tile.Carousel__Card {
   border-radius: 12px;
   overflow: hidden;
@@ -31,7 +24,6 @@
 }
 
 #WACContainer.WACContainer .Carousel__CardImage {
-  // Without this, an extra space at the bottom of the image gets applied.
   display: block;
   width: 100%;
 }

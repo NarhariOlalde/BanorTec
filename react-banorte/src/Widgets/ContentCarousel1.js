@@ -6,9 +6,10 @@ import { Tile, Button } from "carbon-components-react";
 import { useCallback, useState } from "react";
 import cx from "classnames";
 
-import tarjeta1 from "./assets/Banorte-TDC-Clasica-410x290.png";
-import tarjeta2 from "./assets/Banorte-TDC-Oro-410x290.png";
-import tarjeta3 from "./assets/Banorte-TDC-Platinum-410x290px.png";
+// Imagenes de tarjetas de Banorte
+import tarjeta1 from "../assets/Banorte-TDC-Clasica-410x290.png";
+import tarjeta2 from "../assets/Banorte-TDC-Oro-410x290.png";
+import tarjeta3 from "../assets/Banorte-TDC-Platinum-410x290px.png";
 
 const urlImageMap = new Map([
   ["lendyr-everyday-card.jpg", tarjeta1],
@@ -16,6 +17,7 @@ const urlImageMap = new Map([
   ["lendyr-topaz-card.jpg", tarjeta3],
 ]);
 
+// Estilos CSS para el componente
 const cardContainer = {
   position: "relative",
   color: "white",
@@ -42,10 +44,12 @@ const cardNumero = {
 };
 
 function ContentCarousel1({ message, webChatInstance }) {
+  // Datos sobre las tarjetas del carrusel
   const carouselData = message.user_defined.carousel_data;
-
+  // Almacena el elemento actual en la barra de navegacion
   const [navigationElement, setNavigationElement] = useState();
 
+  // Ejecuta una accion al hacer click
   const onCardClick = useCallback(
     (text) => {
       webChatInstance.send(

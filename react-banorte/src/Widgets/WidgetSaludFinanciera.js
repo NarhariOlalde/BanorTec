@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { BiSolidDollarCircle } from "react-icons/bi";
 
+// Estilos CSS para el componente
 const wrapper = {
   margin: "0",
   padding: "0",
@@ -129,9 +130,11 @@ const icon = {
 };
 
 function WidgetSaludFinanciera({ message, webChatInstance }) {
+  // Informacion acerca del tip financiero. Ademas se parsea el objeto de JSON a un objeto de JS
   const jsonObj = message.user_defined.data.replace(/'/g, '"');
   const datosBancarios = JSON.parse(jsonObj);
 
+  // Modifica el string del saldo, ingresos y gastos
   const saldoTotal = `${datosBancarios.saldo}`.replace(
     /\B(?=(\d{3})+(?!\d))/g,
     ","

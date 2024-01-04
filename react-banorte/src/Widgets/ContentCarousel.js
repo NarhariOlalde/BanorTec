@@ -1,3 +1,5 @@
+// Componente demo de un carrusel
+
 import { CaretLeft16, CaretRight16 } from "@carbon/icons-react";
 import PropTypes from "prop-types";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -6,9 +8,9 @@ import { Tile, Button } from "carbon-components-react";
 import { useCallback, useState } from "react";
 import cx from "classnames";
 
-import tarjeta1 from "./assets/Banorte-TDC-Clasica-410x290.png";
-import tarjeta2 from "./assets/Banorte-TDC-Oro-410x290.png";
-import tarjeta3 from "./assets/Banorte_PorTi_410x290.png";
+import tarjeta1 from "../assets/Banorte-TDC-Clasica-410x290.png";
+import tarjeta2 from "../assets/Banorte-TDC-Oro-410x290.png";
+import tarjeta3 from "../assets/Banorte_PorTi_410x290.png";
 
 // Normally these images would be hosted on an external server but we are just going to hard-code them into this
 // example to keep things simple. We're going to look at the hard-coded image data based on the URL that's returned

@@ -5,12 +5,9 @@ import { Navigation, Pagination, A11y } from "swiper";
 import { Button } from "carbon-components-react";
 import { useState } from "react";
 import cx from "classnames";
-import MasterCardLogo from "./assets/Mastercardlogo.png";
+import MasterCardLogo from "../assets/Mastercardlogo.png";
 
-/**
- * This is the component that renders our content carousel.
- */
-
+// Estilos CSS para el componente
 const card = {
   width: "240px",
   height: "150px",
@@ -128,11 +125,12 @@ const img = {
 };
 
 function WidgetTarjetas({ message, webChatInstance }) {
+  // Informacion de las tarjetas recuperados del asistente de WatsonX
   const tarjetas = message.user_defined.data;
-
+  // Almacena el elemento actual en la barra de navegacion
   const [navigationElement, setNavigationElement] = useState();
 
-  // Create a slide for each credit card in the message custom data.
+  // Se crea una slide por cada tarjeta
   return (
     <>
       {navigationElement && (
@@ -229,9 +227,7 @@ function WidgetTarjetas({ message, webChatInstance }) {
   );
 }
 
-/**
- * Renders a custom bullet to be displayed in the pagination element.
- */
+// Se renderiza un punto para el carrusel
 function renderBullet(_, className) {
   return `<span class="${className}"></span>`;
 }

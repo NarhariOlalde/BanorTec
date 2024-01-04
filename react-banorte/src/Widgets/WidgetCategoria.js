@@ -18,6 +18,7 @@ import { FaSprayCan } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa";
 import { FaInfoCircle } from "react-icons/fa";
 
+// Estilos CSS para el componente
 const wrapper = {
   margin: "0",
   padding: "0",
@@ -182,6 +183,7 @@ const progresoFooter = {
 };
 
 function WidgetCategoria({ message, webChatInstance }) {
+  // Informacion de las categorias
   const categorias = message.user_defined.data;
 
   return (
@@ -255,6 +257,7 @@ function WidgetCategoria({ message, webChatInstance }) {
   );
 }
 
+// Se muestra el icono dependiendo de la categoria seleccionada
 function renderIcon(categoria) {
   const style = { ...icon, ...{ color: categoria.color } };
   switch (categoria.categoria) {

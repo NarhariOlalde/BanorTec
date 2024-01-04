@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
-import Arrow from "./assets/arrow.png";
-import Perfil from "./assets/perfil.png";
+import Arrow from "../assets/arrow.png";
+import Perfil from "../assets/perfil.png";
 
+// Estilos CSS para el componente
 const wrapper = {
   margin: "0",
   padding: "0",
@@ -117,6 +118,7 @@ const colorGold = {
 };
 
 function WidgetEnviar({ message, webChatInstance }) {
+  // Informacion de la tarjeta
   const nombreTarjeta = message.user_defined.data;
 
   return (
