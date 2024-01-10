@@ -8,7 +8,7 @@ import { ContentCarousel } from "./Widgets/ContentCarousel";
 import { WidgetCategoria } from "./Widgets/WidgetCategoria.js";
 import { WidgetSaludFinanciera } from "./Widgets/WidgetSaludFinanciera";
 import { WidgetTipFinanciero } from "./Widgets/WidgetTipFinanciero";
-import { WidgetTarjetas } from "./Widgets/WidgetTarjetas";
+// import { WidgetTarjetas } from "./Widgets/WidgetTarjetas";
 import { WidgetEnviar } from "./Widgets/WidgetEnviar";
 import { WidgetAlternativa } from "./Widgets/WidgetAlternativa";
 import { config } from "./config.js";
@@ -83,7 +83,8 @@ function renderCustomResponse(event, webChatInstance) {
     message.user_defined.user_defined_type === "tarjetas disponibles"
   ) {
     return (
-      <WidgetTarjetas message={message} webChatInstance={webChatInstance} />
+      // <WidgetTarjetas message={message} webChatInstance={webChatInstance} />
+      <ContentCarousel message={message} webChatInstance={webChatInstance} />
     );
   }
 

@@ -1,5 +1,4 @@
-// Componente demo de un carrusel
-
+// Widget para mostrar las tarjetas con el diseño actualizado
 import { CaretLeft16, CaretRight16 } from "@carbon/icons-react";
 import PropTypes from "prop-types";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,39 +7,30 @@ import { Tile, Button } from "carbon-components-react";
 import { useCallback, useState } from "react";
 import cx from "classnames";
 
-import tarjeta1 from "../assets/Banorte-TDC-Clasica-410x290.png";
-import tarjeta2 from "../assets/Banorte-TDC-Oro-410x290.png";
+import tarjeta1 from "../assets/Banorte-TDC-Oro-410x290.png";
+import tarjeta2 from "../assets/Banorte-TDC-Clasica-410x290.png";
 import tarjeta3 from "../assets/Banorte_PorTi_410x290.png";
 
-// Normally these images would be hosted on an external server but we are just going to hard-code them into this
-// example to keep things simple. We're going to look at the hard-coded image data based on the URL that's returned
-// in the message data.
 const urlImageMap = new Map([
   ["lendyr-everyday-card.jpg", tarjeta1],
   ["lendyr-preferred-card.jpg", tarjeta2],
   ["lendyr-topaz-card.jpg", tarjeta3],
 ]);
 
-/**
- * This is the component that renders our content carousel.
- */
 function ContentCarousel({ message, webChatInstance }) {
-  const carouselData = message.user_defined.carousel_data;
-  console.log(carouselData);
-
+  // Informacion de las tarjetas recuperados del asistente de WatsonX
+  const tarjetas = message.user_defined.data;
+  // Almacena el elemento actual en la barra de navegacion
   const [navigationElement, setNavigationElement] = useState();
 
   const onCardClick = useCallback(
     (text) => {
-      webChatInstance.send(
-        { input: { text: `Tell me about ${text}` } },
-        { silent: true }
-      );
+      webChatInstance.send({ input: { text: `${text}` } }, { silent: true });
     },
     [webChatInstance]
   );
 
-  // Create a slide for each credit card in the message custom data.
+  // Crea una tarjeta de presentacion para cada una de las tarjetas disponibles
   return (
     <>
       {navigationElement && (
@@ -65,12 +55,18 @@ function ContentCarousel({ message, webChatInstance }) {
           centeredSlides
           rewind
         >
-          {carouselData.map((cardData) => {
-            const { url, title, description, alt } = cardData;
-            const image = urlImageMap.get(url) || url;
+          {tarjetas.map((cardData) => {
+            const { Tarjeta, Disponible, Numero } = cardData;
+            const tarjeta =
+              Tarjeta === "Oro"
+                ? tarjeta1
+                : Tarjeta === "Enlace"
+                ? tarjeta2
+                : tarjeta3;
+            const image = urlImageMap.get(tarjeta) || tarjeta;
 
             return (
-              <SwiperSlide className="swiper-slide" key={url}>
+              <SwiperSlide className="swiper-slide" key={Tarjeta}>
                 <Tile
                   className="Carousel__Card"
                   style={{ position: "relative" }}
@@ -79,7 +75,7 @@ function ContentCarousel({ message, webChatInstance }) {
                     className="Carousel__CardImage"
                     style={{ transform: "scale(1.1) translateX(0.2rem)" }}
                     src={image}
-                    alt={alt}
+                    alt={Tarjeta}
                   />
                   <div
                     style={{
@@ -91,7 +87,7 @@ function ContentCarousel({ message, webChatInstance }) {
                       fontWeight: "800",
                     }}
                   >
-                    **** 1234
+                    {Numero.replace(/(.{4})/, "$1 ")}
                   </div>
                   <div
                     className="Carousel__CardText"
@@ -99,9 +95,16 @@ function ContentCarousel({ message, webChatInstance }) {
                   >
                     <div
                       className="Carousel__CardTitle"
-                      style={{ color: "#CF0A2D" }}
+                      style={{
+                        color:
+                          Tarjeta === "Oro"
+                            ? "#E3B758"
+                            : Tarjeta === "Enlace"
+                            ? "#CF0A2D"
+                            : "#393939",
+                      }}
                     >
-                      {title}
+                      Banorte {Tarjeta}
                     </div>
                     <div
                       style={{
@@ -110,9 +113,7 @@ function ContentCarousel({ message, webChatInstance }) {
                         alignItems: "flex-end",
                       }}
                     >
-                      <div className="Carousel__CardDescription">
-                        {description}
-                      </div>
+                      <div className="Carousel__CardDescription">Saldo:</div>
                       <div
                         style={{
                           display: "flex",
@@ -132,7 +133,7 @@ function ContentCarousel({ message, webChatInstance }) {
                             fontWeight: "500",
                           }}
                         >
-                          9,000
+                          {Disponible}
                         </div>
                         <div
                           style={{ fontSize: "0.6rem", lineHeight: "0.6rem" }}
@@ -146,8 +147,15 @@ function ContentCarousel({ message, webChatInstance }) {
                   {/* This button will send a message to the assistant and web chat will respond with more info. */}
                   <Button
                     className="Carousel__CardButton Carousel__CardButtonMessage"
-                    style={{ backgroundColor: "#CF0A2D" }}
-                    onClick={() => onCardClick(title)}
+                    style={{
+                      backgroundColor:
+                        Tarjeta === "Oro"
+                          ? "#E3B758"
+                          : Tarjeta === "Enlace"
+                          ? "#CF0A2D"
+                          : "#393939",
+                    }}
+                    onClick={() => onCardClick(Tarjeta)}
                   >
                     Seleccionar
                   </Button>
@@ -175,9 +183,6 @@ function ContentCarousel({ message, webChatInstance }) {
   );
 }
 
-/**
- * Renders a custom bullet to be displayed in the pagination element.
- */
 function renderBullet(_, className) {
   return `<span class="${className}"></span>`;
 }
