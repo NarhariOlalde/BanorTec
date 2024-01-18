@@ -6,6 +6,7 @@ import {
 import "./App.scss";
 import { ContentCarousel } from "./Widgets/ContentCarousel";
 import { WidgetCategoria } from "./Widgets/WidgetCategoria.js";
+import { WidgetCategoriasGrafica } from "./Widgets/WidgetCategoriasGrafica";
 import { WidgetSaludFinanciera } from "./Widgets/WidgetSaludFinanciera";
 import { WidgetTipFinanciero } from "./Widgets/WidgetTipFinanciero";
 // import { WidgetTarjetas } from "./Widgets/WidgetTarjetas";
@@ -38,6 +39,19 @@ function renderCustomResponse(event, webChatInstance) {
   ) {
     return (
       <ContentCarousel message={message} webChatInstance={webChatInstance} />
+    );
+  }
+
+  // Muestra los widgets de gastos por categoria
+  if (
+    message.user_defined &&
+    message.user_defined.user_defined_type === "grafica categorias"
+  ) {
+    return (
+      <WidgetCategoriasGrafica
+        message={message}
+        webChatInstance={webChatInstance}
+      />
     );
   }
 

@@ -65,7 +65,7 @@ def generate_chart(mes):
     total = 0
 
     for index, obj in enumerate(categorias):
-        categorias[index]["count"] = sum(filtro_mes[filtro_mes['Predicted_Category'] == obj["categoria"]]['IMP_DES'].tolist())
+        categorias[index]["count"] = round(sum(filtro_mes[filtro_mes['Predicted_Category'] == obj["categoria"]]['IMP_DES'].tolist()), 2)
         total += categorias[index]["count"]
         
     # Agregar categoria de "Otros"

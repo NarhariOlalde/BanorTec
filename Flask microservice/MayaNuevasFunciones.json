@@ -172,16 +172,24 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "description": "Estatus de la carga de imagen"
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "categoria": {
+                        "type": "string",
+                        "description": "Nombre de la categoría"
+                      },
+                      "color": {
+                        "type": "string",
+                        "description": "Color representativo de la categoría"
+                      },
+                      "count": {
+                        "type": "number",
+                        "description": "Cantidad gastada por el usuario en la categoria"
+                      }
                     },
-                    "url": {
-                      "type": "string",
-                      "description": "URL de la imagen"
-                    }
+                    "required": ["categoria", "color", "count"]
                   }
                 }
               }

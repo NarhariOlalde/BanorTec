@@ -15,30 +15,32 @@ const wrapper = {
   backgroundColor: "white",
 };
 
-const centerTextPlugin = {
-  id: "centerTextPlugin",
-  afterDraw: (chart) => {
-    let ctx = chart.ctx;
-    ctx.save();
-
-    // Text characteristics
-    let centerX = (chart.chartArea.left + chart.chartArea.right) / 2;
-    let centerY = (chart.chartArea.top + chart.chartArea.bottom) / 2;
-    ctx.font = "1.6rem Arial"; // Adjust font size and style as needed
-    ctx.fillStyle = "gray"; // Text color
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-
-    // The text to display
-    ctx.fillText("Nov", centerX, centerY);
-
-    ctx.restore();
-  },
-};
-
 function WidgetCategoriasGrafica({ message, webChatInstance }) {
   // Informacion de las categorias
-  // const categorias = message.user_defined.data;
+  const categorias = message.user_defined.data;
+  const mes = message.user_defined.mes;
+  const categoriasLabels = categorias.map((item) => item.categoria);
+  const categoriasColors = categorias.map((item) => item.color);
+  const categoriasCount = categorias.map((item) => item.count);
+
+  const centerTextPlugin = {
+    id: "centerTextPlugin",
+    afterDraw: (chart) => {
+      let ctx = chart.ctx;
+      ctx.save();
+
+      let centerX = (chart.chartArea.left + chart.chartArea.right) / 2;
+      let centerY = (chart.chartArea.top + chart.chartArea.bottom) / 2;
+      ctx.font = "1.6rem Arial";
+      ctx.fillStyle = "gray";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+
+      ctx.fillText(mes.substring(0, 3), centerX, centerY);
+
+      ctx.restore();
+    },
+  };
 
   const legendMarginLeft = {
     id: "legendMarginRight",
@@ -46,45 +48,26 @@ function WidgetCategoriasGrafica({ message, webChatInstance }) {
       const fitValue = chart.legend.fit;
       chart.legend.fit = function fit() {
         fitValue.bind(chart.legend)();
-        let width = (this.width += 40);
+        let width = (this.width += 30);
         return width;
       };
     },
   };
 
   useEffect(() => {
-    // Register the plugin
     Chart.register(ChartDataLabels, centerTextPlugin);
 
-    // Data for the chart
     const data = {
       datasets: [
         {
-          data: [10, 20, 30, 40, 10, 20, 30], // Example data
-          backgroundColor: [
-            "#FAC310",
-            "#B01657",
-            "#E4415D",
-            "#FF8029",
-            "#E35122",
-            "#E6201B",
-            "#808080",
-          ],
+          data: categoriasCount,
+          backgroundColor: categoriasColors,
           borderWidth: 0,
         },
       ],
-      labels: [
-        "Comida",
-        "Super",
-        "Servicios",
-        "Transporte",
-        "Salud",
-        "Tecnologia",
-        "Otros",
-      ],
+      labels: categoriasLabels,
     };
 
-    // Configuration for the chart
     const config = {
       type: "doughnut",
       data: data,
@@ -114,8 +97,8 @@ function WidgetCategoriasGrafica({ message, webChatInstance }) {
             },
           },
           legend: {
-            position: "right", // Position the legend on the right
-            align: "center", // Align the legend items in the center
+            position: "right",
+            align: "center",
             rtl: true,
             labels: {
               textAlign: "left",
@@ -133,13 +116,11 @@ function WidgetCategoriasGrafica({ message, webChatInstance }) {
       plugins: [legendMarginLeft],
     };
 
-    // Initialize the chart
     const myChart = new Chart(
       document.getElementById("myChart").getContext("2d"),
       config
     );
 
-    // Cleanup
     return () => myChart.destroy();
   }, []);
 
