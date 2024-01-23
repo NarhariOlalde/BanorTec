@@ -5,8 +5,9 @@ from functions.recordatorios import recordatorioAutomatico, recordatorioManual, 
 from flask import Flask, request, render_template, send_file
 from functions.saludFinanciera import saludFinanciera, tipFinanciero
 from flask import Flask, request
+from helpers.db import create_app
 
-app = Flask(__name__, template_folder='templates')
+app = create_app()
 app.static_folder = 'static'
 
 # 1. Recordatorios
@@ -85,3 +86,4 @@ def aaa():
 
 if __name__ == '__main__':
     app.run(host="localhost", port=3000, debug=True)
+    

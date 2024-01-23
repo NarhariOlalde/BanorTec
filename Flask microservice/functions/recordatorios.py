@@ -1,5 +1,6 @@
 from datetime import datetime
 from helpers.users import get_user
+from helpers.db import mongo
 import pandas as pd
 import math
 
@@ -19,9 +20,8 @@ meses = {
 }
 
 def recordatorioAutomatico():
-    # Read file
-    file = "./data/projectPaymentReminder_MONTHLY.csv"
-    df = pd.read_csv(file)
+    # Read MongoDB database
+    df = pd.DataFrame(list(mongo.db.projectPaymentReminder_MONTHLY.find()))
 
     currentIdUser = "1234"
     today = datetime.now().date()

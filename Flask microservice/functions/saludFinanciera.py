@@ -1,4 +1,5 @@
 from helpers.users import get_user
+from helpers.db import mongo
 import pandas as pd
 import math
 
@@ -7,9 +8,8 @@ def saludFinanciera(userId, mes, costo):
     user = get_user(userId)
     costo = int(costo)
 
-    # Read file
-    file = "./data/test_dataset_with_predictions.csv"
-    df = pd.read_csv(file)
+    # Read MongoDB database
+    df = pd.DataFrame(list(mongo.db.test_dataset_with_predictions.find()))
 
     # Filtro de mes
     filtro_mes = df[df['FEC_PROC'].str.contains(mes, na=False)]

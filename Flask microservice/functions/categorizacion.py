@@ -1,13 +1,13 @@
 from helpers.users import get_user
+from helpers.db import mongo
 import io
 import pandas as pd
 import math
 import re
 
 def gasto_mensual(categoria, mes, userId):
-    # Read file
-    file = "./data/test_dataset_with_predictions.csv"
-    df = pd.read_csv(file)
+    # Read MongoDB database
+    df = pd.DataFrame(list(mongo.db.test_dataset_with_predictions.find()))
 
     # Filtro de mes
     pattern = r'enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre'
@@ -42,9 +42,8 @@ def gasto_mensual(categoria, mes, userId):
     }
     
 def generate_chart(mes):
-    # Read file
-    file = "./data/test_dataset_with_predictions.csv"
-    df = pd.read_csv(file)
+    # Read MongoDB database
+    df = pd.DataFrame(list(mongo.db.test_dataset_with_predictions.find()))
 
     # Filtro de mes
     pattern = r'enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre'
@@ -106,9 +105,8 @@ def crea_imagen_mes(categoriasFlags, mes, userId):
     # Obtener el presupuesto de la categoria
     user = get_user(userId)
 
-    # Read file
-    file = "./data/test_dataset_with_predictions.csv"
-    df = pd.read_csv(file)
+    # Read MongoDB database
+    df = pd.DataFrame(list(mongo.db.test_dataset_with_predictions.find()))
 
     # Filtro de mes
     pattern = r'enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre'
