@@ -8,6 +8,7 @@ def check_card(userId):
     tarjetaNombre = ""
     numero = ""
     saldo = ""
+    fechaVencimiento = ""
 
     # F: para solicitar aumento de la linea de credito
     for tarjeta in user["Tarjetas"]:
@@ -18,6 +19,7 @@ def check_card(userId):
                 tarjetaNombre = "oro"
                 numero = "****" + str(tarjeta["numero"][-4:])
                 saldo = tarjeta["saldo"]
+                fechaVencimiento = tarjeta["vencimiento"]
 
     # F: Revisar el vencimiento de la tarjeta
     fecha_actual = datetime.now()
@@ -32,10 +34,12 @@ def check_card(userId):
             tarjetaNombre = tarjeta["nombre"]
             numero = "****" + str(tarjeta["numero"][-4:])
             saldo = tarjeta["saldo"]
+            fechaVencimiento = tarjeta["vencimiento"]
             
     return {
         "message": message,
         "tarjetaNombre": tarjetaNombre,
         "numero": numero,
-        "saldo": "{:,.0f}".format(saldo)
+        "saldo": "{:,.0f}".format(saldo),
+        "fechaVencimiento": fechaVencimiento
     }

@@ -329,6 +329,10 @@
                     "saldo": {
                       "type": "string",
                       "description": "Saldo disponible en la tarjeta"
+                    },
+                    "fechaVencimiento": {
+                      "type": "string",
+                      "description": "Fecha de venciomiento de la tarjeta"
                     }
                   }
                 }

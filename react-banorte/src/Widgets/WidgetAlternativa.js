@@ -1,5 +1,15 @@
 import PropTypes from "prop-types";
 
+import tarjeta1 from "../assets/Banorte-TDC-Oro-410x290.png";
+import tarjeta2 from "../assets/Banorte-TDC-Clasica-410x290.png";
+import tarjeta3 from "../assets/Banorte_PorTi_410x290.png";
+
+const urlImageMap = new Map([
+  ["Banorte-TDC-Oro-410x290.png", tarjeta1],
+  ["Banorte-TDC-Clasica-410x290.png", tarjeta2],
+  ["Banorte_PorTi_410x290.png", tarjeta3],
+]);
+
 // Estilos CSS para el componente
 const wrapper = {
   display: "flex",
@@ -8,166 +18,131 @@ const wrapper = {
 };
 
 const card = {
-  width: "70%",
-  height: "8rem",
-  backgroundColor: "#ffffff",
-  borderRadius: "10px",
-  boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)",
-  position: "relative",
-  overflow: "hidden",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-};
-
-const circle = {
-  width: "100px",
-  height: "100px",
-  borderRadius: "50%",
-  position: "absolute",
-  top: "-45px",
-  left: "-5px",
-};
-
-const circleColorRed = {
-  backgroundColor: "#EB0027",
-};
-
-const circleColorGold = {
-  backgroundColor: "#F1C75A",
-};
-
-const cardTitle = {
-  color: "#ffffff",
-  fontSize: "16px",
-  textAlign: "center",
-  margin: "0",
-  fontFamily: "'Roboto', sans-serif",
-  fontWeight: "600",
-  marginTop: "52px",
-  paddingBottom: "0",
-};
-
-const cardSubtitle = {
-  color: "#ffffff",
-  fontSize: "12px",
-  textAlign: "center",
-  margin: "0",
-  paddingTop: "0px",
-  fontFamily: "'Roboto', sans-serif",
-  fontWeight: "300",
-};
-
-const amountContainer = {
   width: "100%",
-  height: "100%",
+  backgroundColor: "#ffffff",
+  borderRadius: "1rem",
+  boxShadow: "0.1rem 0.1rem 0.5rem 0.2rem rgba(0, 0, 0, 0.1)",
+  position: "relative",
   display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  paddingTop: "1.5rem",
+  flexDirection: "column",
 };
 
-const amount = {
-  fontSize: "40px",
-  fontFamily: "'Roboto', sans-serif",
-  fontWeight: "600",
-  color: "#000000",
-  margin: "0",
-  padding: "0",
+const imageContainer = {
+  transform: "scale(1.1) translateX(0.2rem) translateY(-0.1rem)",
+};
+const tarjetaImage = {
+  width: "100%",
+  zIndex: "0",
 };
 
-const amountDecimals = {
-  fontSize: "1.2rem",
-  fontFamily: "'Roboto', sans-serif",
-  fontWeight: "600",
-  color: "#000000",
-  margin: "0",
-  padding: "0",
-  paddingBottom: "8px",
-};
-
-const moneySimbol = {
-  fontSize: "20px",
-  fontFamily: "'Roboto', sans-serif",
-  fontWeight: "600",
-  color: "#000000",
-  margin: "0",
-  padding: "0",
-  paddingTop: "12px",
-};
-
-const coin = {
-  fontSize: "15px",
-  fontFamily: "'Roboto', sans-serif",
-  fontWeight: "600",
-  color: "#000000",
-  margin: "0",
-  padding: "0",
-  paddingTop: "10px",
-  paddingLeft: "5px",
-};
-
-const mxn = {
-  fontSize: "0.7rem",
-  fontFamily: "'Roboto', sans-serif",
-  fontWeight: "600",
-  color: "#000000",
-  margin: "0",
-  padding: "0",
-  paddingTop: "0.5rem",
-  marginBottom: "-0.4rem",
-};
-
-const cardNumber = {
+const tarjetaNumero = {
   position: "absolute",
-  top: "30px",
-  right: "50%",
-  transform: "translateX(50%)",
-  zIndex: "99",
-  fontSize: "16px",
+  fontSize: "1.2rem",
+  bottom: "2.5rem",
+  left: "2.5rem",
+  color: "white",
+  fontWeight: "800",
+};
+
+const tarjetaVencimiento = {
+  position: "absolute",
+  fontSize: "1.2rem",
+  top: "4rem",
+  right: "2rem",
+  color: "white",
+  fontWeight: "800",
+};
+
+const infoContainer = {
+  display: "flex",
+  flexDirection: "column",
+  padding: "0.5rem 1rem 0.5rem 1rem",
+};
+
+const saldoLabel = {
+  fontSize: "1.3rem",
 };
 
 function WidgetAlternativa({ message, webChatInstance }) {
   // Datos de la tarjeta del usuario
   const saldo = message.user_defined.saldo;
-  const tarjeta = message.user_defined.tarjeta;
+  const nombre = message.user_defined.tarjeta;
   const numero = message.user_defined.numero;
+  const vencimiento = message.user_defined.fechaVencimiento;
+
+  const tarjeta =
+    nombre === "oro" ? tarjeta1 : nombre === "enlace" ? tarjeta2 : tarjeta3;
+  const image = urlImageMap.get(tarjeta) || tarjeta;
 
   return (
     <div style={wrapper}>
-      <div style={card}>
-        <div
-          style={{
-            ...circle,
-            ...(tarjeta === "oro" ? circleColorGold : circleColorRed),
-          }}
-        >
-          <div>
-            <h1 style={cardTitle}>{tarjeta.toUpperCase()}</h1>
-            <h5 style={cardSubtitle}>DIGITAL</h5>
-          </div>
+      <div
+        style={{
+          ...card,
+          borderBottom: `0.5rem solid ${
+            nombre === "oro"
+              ? "#E3B758"
+              : nombre === "enlace"
+              ? "#CF0A2D"
+              : "#393939"
+          }`,
+        }}
+      >
+        <div style={imageContainer}>
+          <img style={tarjetaImage} src={image} alt={nombre} />
+          <div style={tarjetaNumero}>{"**** " + numero.slice(-4)}</div>
+          <div style={tarjetaVencimiento}>{vencimiento}</div>
         </div>
 
-        <div style={cardNumber}>
-          <h5 style={coin}>{numero}</h5>
-        </div>
-
-        <div style={amountContainer}>
-          <div>
-            <h3 style={moneySimbol}>$</h3>
-          </div>
-          <div>
-            <h2 style={amount} id="formatted_balance">
-              {saldo}
-            </h2>
-          </div>
-
-          <div style={{ padding: "0.3rem 0 0 0.2rem" }}>
-            <div>
-              <h3 style={mxn}>MXN</h3>
+        <div style={infoContainer}>
+          <div style={{ marginTop: "-0.5rem" }}>
+            <div
+              style={{
+                color:
+                  nombre === "oro"
+                    ? "#E3B758"
+                    : nombre === "enlace"
+                    ? "#CF0A2D"
+                    : "#393939",
+                fontSize: "1.6rem",
+                fontWeight: "800",
+              }}
+            >
+              Banorte {nombre}
             </div>
-            <div>
-              <h3 style={amountDecimals}>.00</h3>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-end",
+                padding: "1rem 0 0.5rem 0",
+              }}
+            >
+              <div style={saldoLabel}>Saldo:</div>
+              <div
+                style={{
+                  display: "flex",
+                  color: "black",
+                  alignItems: "flex-end",
+                }}
+              >
+                <div style={{ fontSize: "0.8rem", lineHeight: "0.6rem" }}>
+                  $
+                </div>
+                <div
+                  style={{
+                    fontSize: "1.6rem",
+                    padding: "0 0.2rem 0 0.1rem",
+                    fontWeight: "500",
+                  }}
+                >
+                  {saldo}
+                </div>
+                <div style={{ fontSize: "0.6rem", lineHeight: "0.6rem" }}>
+                  <div>MXN</div>
+                  <div>.00</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
