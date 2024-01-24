@@ -47,7 +47,7 @@ const tarjetaNumero = {
 const tarjetaVencimiento = {
   position: "absolute",
   fontSize: "1rem",
-  top: "6rem",
+  top: "5rem",
   right: "1.5rem",
   color: "white",
   fontWeight: "800",
