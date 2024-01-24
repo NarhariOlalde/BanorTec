@@ -18,7 +18,7 @@ const wrapper = {
 };
 
 const card = {
-  width: "100%",
+  width: "80%",
   backgroundColor: "#ffffff",
   borderRadius: "1rem",
   boxShadow: "0.1rem 0.1rem 0.5rem 0.2rem rgba(0, 0, 0, 0.1)",
@@ -37,18 +37,18 @@ const tarjetaImage = {
 
 const tarjetaNumero = {
   position: "absolute",
-  fontSize: "1.2rem",
-  bottom: "2.5rem",
-  left: "2.5rem",
+  fontSize: "1.1rem",
+  bottom: "2rem",
+  left: "2rem",
   color: "white",
   fontWeight: "800",
 };
 
 const tarjetaVencimiento = {
   position: "absolute",
-  fontSize: "1.2rem",
-  top: "4rem",
-  right: "2rem",
+  fontSize: "1rem",
+  top: "6rem",
+  right: "1.5rem",
   color: "white",
   fontWeight: "800",
 };
@@ -60,7 +60,7 @@ const infoContainer = {
 };
 
 const saldoLabel = {
-  fontSize: "1.3rem",
+  fontSize: "1rem",
 };
 
 function WidgetAlternativa({ message, webChatInstance }) {
@@ -104,7 +104,7 @@ function WidgetAlternativa({ message, webChatInstance }) {
                     : nombre === "enlace"
                     ? "#CF0A2D"
                     : "#393939",
-                fontSize: "1.6rem",
+                fontSize: "1.4rem",
                 fontWeight: "800",
               }}
             >
@@ -115,7 +115,7 @@ function WidgetAlternativa({ message, webChatInstance }) {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "flex-end",
-                padding: "1rem 0 0.5rem 0",
+                padding: "0.5rem 0 0.5rem 0",
               }}
             >
               <div style={saldoLabel}>Saldo:</div>
