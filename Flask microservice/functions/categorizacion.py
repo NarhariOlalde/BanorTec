@@ -124,7 +124,7 @@ def crea_imagen_mes(categoriasFlags, mes, userId):
 
         # Filtro de categoria para conocer el valor total
         filtro_categoria = filtro_mes[filtro_mes['Predicted_Category'] == categoria]
-        gastado = sum(filtro_categoria['IMP_DES'].tolist()) / 10 # TODO: Remove the /10
+        gastado = math.ceil(sum(filtro_categoria['IMP_DES'].tolist()) / 10)
         porcentaje = str(math.ceil((gastado / presupuesto) * 100))
 
         gastosPorCategoria.append({

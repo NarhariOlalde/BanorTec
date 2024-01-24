@@ -23,8 +23,10 @@ function WidgetCategoriasGrafica({ message, webChatInstance }) {
   const categoriasColors = categorias.map((item) => item.color);
   const categoriasCount = categorias.map((item) => item.count);
 
+  const randint = Math.floor(Math.random() * (1000000 - 0 + 1)) + 0;
+
   const centerTextPlugin = {
-    id: "centerTextPlugin",
+    id: `centerTextPlugin-${randint}`,
     afterDraw: (chart) => {
       let ctx = chart.ctx;
       ctx.save();
@@ -55,7 +57,7 @@ function WidgetCategoriasGrafica({ message, webChatInstance }) {
   };
 
   useEffect(() => {
-    Chart.register(ChartDataLabels, centerTextPlugin);
+    Chart.register(ChartDataLabels);
 
     const data = {
       datasets: [
@@ -113,20 +115,20 @@ function WidgetCategoriasGrafica({ message, webChatInstance }) {
           },
         },
       },
-      plugins: [legendMarginLeft],
+      plugins: [centerTextPlugin, legendMarginLeft],
     };
 
     const myChart = new Chart(
-      document.getElementById("myChart").getContext("2d"),
+      document.getElementById(`myChart-${randint}`).getContext("2d"),
       config
     );
 
     return () => myChart.destroy();
-  }, []);
+  }, [mes]);
 
   return (
-    <div style={wrapper}>
-      <canvas id="myChart"></canvas>
+    <div style={wrapper} id={randint}>
+      <canvas id={`myChart-${randint}`}></canvas>
     </div>
   );
 }
