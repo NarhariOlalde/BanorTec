@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { BiSolidDollarCircle } from "react-icons/bi";
+import PiggyBankIcon from "../assets/piggybank.png";
 
 // Estilos CSS para el componente
 const wrapper = {
@@ -30,6 +31,7 @@ const header = {
   alignItems: "center",
   borderRadius: "1rem 1rem 0 0",
   color: "white",
+  position: "relative",
 };
 
 const dinero = {
@@ -129,16 +131,22 @@ const icon = {
   fontSize: "1.2rem",
 };
 
+const piggyBankImage = {
+  width: "2.2rem",
+  position: "absolute",
+  top: "1.2rem",
+  left: "1rem",
+};
+
 function WidgetSaludFinanciera({ message, webChatInstance }) {
   // Informacion acerca del tip financiero. Ademas se parsea el objeto de JSON a un objeto de JS
   const jsonObj = message.user_defined.data.replace(/'/g, '"');
   const datosBancarios = JSON.parse(jsonObj);
 
   // Modifica el string del saldo, ingresos y gastos
-  const saldoTotal = `${datosBancarios.saldo}`.replace(
-    /\B(?=(\d{3})+(?!\d))/g,
-    ","
-  );
+  const saldoTotal = `${
+    datosBancarios.ingresos - datosBancarios.gastos
+  }`.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   const ingresosTotales = `${datosBancarios.ingresos}`.replace(
     /\B(?=(\d{3})+(?!\d))/g,
     ","
@@ -152,6 +160,7 @@ function WidgetSaludFinanciera({ message, webChatInstance }) {
     <div style={wrapper}>
       <div style={card}>
         <div style={header}>
+          <img src={PiggyBankIcon} style={piggyBankImage}></img>
           <div style={dinero}>
             <div style={dineroSimbolo}>$</div>
             <div style={dineroCantidad}>{saldoTotal}.</div>
