@@ -12,9 +12,9 @@ import tarjeta2 from "../assets/Banorte-TDC-Clasica-410x290.png";
 import tarjeta3 from "../assets/Banorte_PorTi_410x290.png";
 
 const urlImageMap = new Map([
-  ["lendyr-everyday-card.jpg", tarjeta1],
-  ["lendyr-preferred-card.jpg", tarjeta2],
-  ["lendyr-topaz-card.jpg", tarjeta3],
+  ["Banorte-TDC-Oro-410x290.png", tarjeta1],
+  ["Banorte-TDC-Clasica-410x290.png", tarjeta2],
+  ["Banorte_PorTi_410x290.png", tarjeta3],
 ]);
 
 function ContentCarousel({ message, webChatInstance }) {
@@ -56,17 +56,17 @@ function ContentCarousel({ message, webChatInstance }) {
           rewind
         >
           {tarjetas.map((cardData) => {
-            const { Tarjeta, Disponible, Numero } = cardData;
+            const { nombre, saldo, numero } = cardData;
             const tarjeta =
-              Tarjeta === "Oro"
+              nombre === "Oro"
                 ? tarjeta1
-                : Tarjeta === "Enlace"
+                : nombre === "Enlace"
                 ? tarjeta2
                 : tarjeta3;
             const image = urlImageMap.get(tarjeta) || tarjeta;
 
             return (
-              <SwiperSlide className="swiper-slide" key={Tarjeta}>
+              <SwiperSlide className="swiper-slide" key={nombre}>
                 <Tile
                   className="Carousel__Card"
                   style={{ position: "relative" }}
@@ -75,7 +75,7 @@ function ContentCarousel({ message, webChatInstance }) {
                     className="Carousel__CardImage"
                     style={{ transform: "scale(1.1) translateX(0.2rem)" }}
                     src={image}
-                    alt={Tarjeta}
+                    alt={nombre}
                   />
                   <div
                     style={{
@@ -87,7 +87,7 @@ function ContentCarousel({ message, webChatInstance }) {
                       fontWeight: "800",
                     }}
                   >
-                    {Numero.replace(/(.{4})/, "$1 ")}
+                    {"**** " + numero.slice(-4)}
                   </div>
                   <div
                     className="Carousel__CardText"
@@ -97,14 +97,14 @@ function ContentCarousel({ message, webChatInstance }) {
                       className="Carousel__CardTitle"
                       style={{
                         color:
-                          Tarjeta === "Oro"
+                          nombre === "Oro"
                             ? "#E3B758"
-                            : Tarjeta === "Enlace"
+                            : nombre === "Enlace"
                             ? "#CF0A2D"
                             : "#393939",
                       }}
                     >
-                      Banorte {Tarjeta}
+                      Banorte {nombre}
                     </div>
                     <div
                       style={{
@@ -133,7 +133,7 @@ function ContentCarousel({ message, webChatInstance }) {
                             fontWeight: "500",
                           }}
                         >
-                          {Disponible}
+                          {parseInt(saldo).toLocaleString()}
                         </div>
                         <div
                           style={{ fontSize: "0.6rem", lineHeight: "0.6rem" }}
@@ -149,13 +149,13 @@ function ContentCarousel({ message, webChatInstance }) {
                     className="Carousel__CardButton Carousel__CardButtonMessage"
                     style={{
                       backgroundColor:
-                        Tarjeta === "Oro"
+                        nombre === "Oro"
                           ? "#E3B758"
-                          : Tarjeta === "Enlace"
+                          : nombre === "Enlace"
                           ? "#CF0A2D"
                           : "#393939",
                     }}
-                    onClick={() => onCardClick(Tarjeta)}
+                    onClick={() => onCardClick(nombre)}
                   >
                     Seleccionar
                   </Button>

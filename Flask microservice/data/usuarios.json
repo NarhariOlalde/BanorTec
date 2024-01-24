@@ -17,6 +17,13 @@
         "saldo": 3000,
         "vencimiento": "11/23",
         "lineaCredito": null
+      },
+      {
+        "numero": "6234567891011121",
+        "nombre": "Nomina",
+        "saldo": 1100,
+        "vencimiento": "11/26",
+        "lineaCredito": null
       }
     ],
     "IngresoMensual": 20000,
@@ -43,13 +50,6 @@
         "nombre": "Enlace",
         "saldo": 3200,
         "vencimiento": "07/24",
-        "lineaCredito": null
-      },
-      {
-        "numero": "6234567891011121",
-        "nombre": "Nomina",
-        "saldo": 1100,
-        "vencimiento": "11/26",
         "lineaCredito": null
       }
     ],

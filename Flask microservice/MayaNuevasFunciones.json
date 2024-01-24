@@ -30,9 +30,21 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "recordatorio": {
+                    "customerAlias": {
                       "type": "string",
-                      "description": "Recordatorio"
+                      "description": "Alias del cliente"
+                    },
+                    "fechaRecordatorio": {
+                      "type": "string",
+                      "description": "Fecha en que se debe realizar el recordatorio"
+                    },
+                    "predMonto": {
+                      "type": "string",
+                      "description": "Prediccion del monto"
+                    },
+                    "accountDestination": {
+                      "type": "string",
+                      "description": "Cuenta destino"
                     }
                   }
                 }

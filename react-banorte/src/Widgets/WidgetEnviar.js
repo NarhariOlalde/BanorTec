@@ -31,6 +31,7 @@ const info = {
   flexDirection: "column",
   gap: "1rem",
   alignItems: "center",
+  flex: "65%",
 };
 
 const dineroContainer = {
@@ -43,9 +44,9 @@ const dineroSimbolo = {
 };
 
 const dineroCantidad = {
-  fontSize: "2.5rem",
+  fontSize: "1.8rem",
   fontWeight: "900",
-  lineHeight: "2.0rem",
+  lineHeight: "1.7rem",
 };
 
 const dineroCont = {
@@ -91,12 +92,15 @@ const dineroDigital = {
 
 const icon = {
   width: "2rem",
+  flex: "10%",
 };
 
 const perfil = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  flex: "25%",
+  paddingRight: "0.5rem",
 };
 
 const perfilFoto = {
@@ -106,7 +110,9 @@ const perfilFoto = {
 
 const perfilNombre = {
   textTransform: "uppercase",
-  fontSize: "1.1rem",
+  fontSize: "1rem",
+  textAlign: "center",
+  margin: "0 -1rem 0 -1rem",
 };
 
 const colorRed = {
@@ -117,9 +123,14 @@ const colorGold = {
   backgroundColor: "#F1C75A",
 };
 
+const colorBlack = {
+  backgroundColor: "#393939",
+};
+
 function WidgetEnviar({ message, webChatInstance }) {
   // Informacion de la tarjeta
   const nombreTarjeta = message.user_defined.data;
+  const { predMonto, accountDestination } = message.user_defined;
 
   return (
     <div style={wrapper}>
@@ -127,7 +138,9 @@ function WidgetEnviar({ message, webChatInstance }) {
         <div style={info}>
           <div style={dineroContainer}>
             <div style={dineroSimbolo}>$</div>
-            <div style={dineroCantidad}>700</div>
+            <div style={dineroCantidad}>
+              {parseInt(predMonto).toLocaleString()}
+            </div>
             <div style={dineroCont}>
               <div style={dineroMxn}>MXN</div>
               <div style={dineroCeros}>.00</div>
@@ -137,7 +150,11 @@ function WidgetEnviar({ message, webChatInstance }) {
           <div
             style={{
               ...dineroCard,
-              ...(nombreTarjeta === "Oro" ? colorGold : colorRed),
+              ...(nombreTarjeta === "Oro"
+                ? colorGold
+                : nombreTarjeta === "Enlace"
+                ? colorRed
+                : colorBlack),
             }}
           >
             <div style={dineroDesde}>desde</div>
@@ -154,7 +171,7 @@ function WidgetEnviar({ message, webChatInstance }) {
 
         <div style={perfil}>
           <img src={Perfil} style={perfilFoto} alt="perfil" />
-          <div style={perfilNombre}>Valeria</div>
+          <div style={perfilNombre}>{accountDestination}</div>
         </div>
       </div>
     </div>

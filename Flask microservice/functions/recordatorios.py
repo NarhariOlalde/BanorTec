@@ -31,6 +31,7 @@ def recordatorioAutomatico():
     datosRecordatorio = filtro_usuario_dia.iloc[0]
 
     # Cuenta destino:
+    acc_cust = get_user(currentIdUser)["Alias"]
     acc_dest = get_user(str(datosRecordatorio["ACC_DEST"]))["Nombre"]
 
     # Monto (Prediccion):
@@ -41,7 +42,10 @@ def recordatorioAutomatico():
     fecha_recordatorio = f"{dia} de {meses.get(mes, mes)}"
 
     return {
-        "recordatorio": f"Hola Jos, hoy es {fecha_recordatorio}! ¿Quieres pagar ${pred_monto}.00 a la cuenta de '{acc_dest}' como cada mes?"
+        "customerAlias": acc_cust,
+        "fechaRecordatorio": fecha_recordatorio,
+        "predMonto": pred_monto,
+        "accountDestination": acc_dest
     }
 
 def recordatorioManual():
@@ -50,20 +54,7 @@ def recordatorioManual():
     }
 
 def tarjetasDisponibles():
-    return [
-        {
-            "Tarjeta": "Oro",
-            "Disponible": "9,000",
-            "Numero": "****8090"
-        },
-        {
-            "Tarjeta": "Enlace",
-            "Disponible": "13,500",
-            "Numero": "****1785"
-        },
-        {
-            "Tarjeta": "Nómina",
-            "Disponible": "2,500",
-            "Numero": "****1234"
-        }
-    ]
+    currentIdUser = "1234"
+    tarjetas_cust = get_user(currentIdUser)["Tarjetas"]
+
+    return tarjetas_cust
