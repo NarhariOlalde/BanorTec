@@ -8,6 +8,11 @@ import { ContentCarousel } from "./Widgets/ContentCarousel";
 import { WidgetCategoria } from "./Widgets/WidgetCategoria.js";
 import { WidgetCategoriasGrafica } from "./Widgets/WidgetCategoriasGrafica";
 import { WidgetSaludFinanciera } from "./Widgets/WidgetSaludFinanciera";
+import {
+  WidgetAhorroProgramadoInfo,
+  WidgetAhorroProgramadoPaso1,
+  WidgetAhorroProgramadoPaso2,
+} from "./Widgets/WidgetAhorroProgramadoInfo";
 import { WidgetTipFinanciero } from "./Widgets/WidgetTipFinanciero";
 // import { WidgetTarjetas } from "./Widgets/WidgetTarjetas";
 import { WidgetEnviar } from "./Widgets/WidgetEnviar";
@@ -72,6 +77,45 @@ function renderCustomResponse(event, webChatInstance) {
   ) {
     return (
       <WidgetSaludFinanciera
+        message={message}
+        webChatInstance={webChatInstance}
+      />
+    );
+  }
+
+  // Muestra el Widget de Ahorro Programado Info
+  if (
+    message.user_defined &&
+    message.user_defined.user_defined_type === "ahorro programado"
+  ) {
+    return (
+      <WidgetAhorroProgramadoInfo
+        message={message}
+        webChatInstance={webChatInstance}
+      />
+    );
+  }
+
+  // Muestra el Widget de Ahorro Programado Paso 1
+  if (
+    message.user_defined &&
+    message.user_defined.user_defined_type === "ahorro programado paso1"
+  ) {
+    return (
+      <WidgetAhorroProgramadoPaso1
+        message={message}
+        webChatInstance={webChatInstance}
+      />
+    );
+  }
+
+  // Muestra el Widget de Ahorro Programado Paso 2
+  if (
+    message.user_defined &&
+    message.user_defined.user_defined_type === "ahorro programado paso2"
+  ) {
+    return (
+      <WidgetAhorroProgramadoPaso2
         message={message}
         webChatInstance={webChatInstance}
       />
