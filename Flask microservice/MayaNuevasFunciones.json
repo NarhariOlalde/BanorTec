@@ -28,23 +28,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "customerAlias": {
-                      "type": "string",
-                      "description": "Alias del cliente"
-                    },
-                    "fechaRecordatorio": {
-                      "type": "string",
-                      "description": "Fecha en que se debe realizar el recordatorio"
-                    },
-                    "predMonto": {
-                      "type": "string",
-                      "description": "Prediccion del monto"
-                    },
-                    "accountDestination": {
-                      "type": "string",
-                      "description": "Cuenta destino"
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "accountDestination": {
+                        "type": "string",
+                        "description": "Cuenta destino"
+                      },
+                      "customerAlias": {
+                        "type": "string",
+                        "description": "Alias del cliente"
+                      },
+                      "fechaRecordatorio": {
+                        "type": "string",
+                        "description": "Fecha en la que se debe generar el recordatorio"
+                      },
+                      "predMonto": {
+                        "type": "string",
+                        "description": "Prediccion del monto"
+                      }
                     }
                   }
                 }

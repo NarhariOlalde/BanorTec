@@ -4,6 +4,7 @@ import {
   setEnableDebug,
 } from "@ibm-watson/assistant-web-chat-react";
 import "./App.scss";
+import { WidgetListaRecordatorios } from "./Widgets/WidgetListaRecordatorios";
 import { ContentCarousel } from "./Widgets/ContentCarousel";
 import { WidgetCategoria } from "./Widgets/WidgetCategoria.js";
 import { WidgetCategoriasGrafica } from "./Widgets/WidgetCategoriasGrafica";
@@ -36,6 +37,19 @@ function App() {
 // Funcion para ejecutar los Widgets de React
 function renderCustomResponse(event, webChatInstance) {
   const { message } = event.data;
+
+  // Muestra la lista de recordatorios
+  if (
+    message.user_defined &&
+    message.user_defined.user_defined_type === "lista recordatorios"
+  ) {
+    return (
+      <WidgetListaRecordatorios
+        message={message}
+        webChatInstance={webChatInstance}
+      />
+    );
+  }
 
   // Muestra el carrusel de tarjetas demo
   if (

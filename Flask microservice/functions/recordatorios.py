@@ -28,25 +28,29 @@ def recordatorioAutomatico():
 
     # Busca el usuario actual y los recordatorios correspondientes a hoy em "REMINDER_DATE"
     filtro_usuario_dia = df[(df['CUST_NUM'] == int(currentIdUser)) & (df['REMINDER_DATE'] == today.strftime("%Y-%m-%d"))]
-    datosRecordatorio = filtro_usuario_dia.iloc[0]
 
-    # Cuenta destino:
-    acc_cust = get_user(currentIdUser)["Alias"]
-    acc_dest = get_user(str(datosRecordatorio["ACC_DEST"]))["Nombre"]
+    listaRecordatorios = []
 
-    # Monto (Prediccion):
-    pred_monto = math.ceil(datosRecordatorio["PRED_MONTO"])
+    for datosRecordatorio in filtro_usuario_dia.iloc:
+        # Cuenta destino:
+        acc_cust = get_user(currentIdUser)["Alias"]
+        acc_dest = get_user(str(datosRecordatorio["ACC_DEST"]))["Nombre"]
 
-    # Dia actual en espanol
-    dia, mes = today.strftime("%d de %B").split(' de ')
-    fecha_recordatorio = f"{dia} de {meses.get(mes, mes)}"
+        # Monto (Prediccion):
+        pred_monto = math.ceil(datosRecordatorio["PRED_MONTO"])
 
-    return {
-        "customerAlias": acc_cust,
-        "fechaRecordatorio": fecha_recordatorio,
-        "predMonto": pred_monto,
-        "accountDestination": acc_dest
-    }
+        # Dia actual en espanol
+        dia, mes = today.strftime("%d de %B").split(' de ')
+        fecha_recordatorio = f"{dia} de {meses.get(mes, mes)}"
+
+        listaRecordatorios.append({
+            "customerAlias": acc_cust,
+            "fechaRecordatorio": fecha_recordatorio,
+            "predMonto": pred_monto,
+            "accountDestination": acc_dest
+        })
+
+    return listaRecordatorios
 
 def recordatorioManual():
     return {
