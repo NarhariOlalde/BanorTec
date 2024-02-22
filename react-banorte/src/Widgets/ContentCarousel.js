@@ -143,12 +143,7 @@ function ContentCarousel({ message, webChatInstance }) {
                   <Button
                     className="Carousel__CardButton Carousel__CardButtonMessage"
                     style={{
-                      backgroundColor:
-                        nombre === "Oro"
-                          ? "#E3B758"
-                          : nombre === "Enlace"
-                          ? "#CF0A2D"
-                          : "#393939",
+                      backgroundColor: "#5C6670",
                     }}
                     onClick={() => onCardClick(nombre)}
                   >
