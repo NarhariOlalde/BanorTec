@@ -141,6 +141,7 @@ const piggyBankImage = {
 function WidgetSaludFinanciera({ message, webChatInstance }) {
   // Informacion acerca del tip financiero. Ademas se parsea el objeto de JSON a un objeto de JS
   const jsonObj = message.user_defined.data.replace(/'/g, '"');
+  console.log(jsonObj);
   const datosBancarios = JSON.parse(jsonObj);
 
   // Modifica el string del saldo, ingresos y gastos

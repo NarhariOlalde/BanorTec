@@ -154,6 +154,146 @@ function WidgetAhorroProgramadoPaso2({ message, webChatInstance }) {
   );
 }
 
+function WidgetAhorroProgramadoPaso3({ message, webChatInstance }) {
+  return (
+    <div style={wrapper}>
+      <div style={card}>
+        <div style={{ padding: "1rem" }}>
+          <div style={{ fontWeight: "900", fontSize: "1.1rem" }}>Paso #3:</div>
+          <div style={{ fontSize: "1.2rem" }}>¿Cuándo quieres empezar?</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function WidgetAhorroProgramadoPaso4({ message, webChatInstance }) {
+  return (
+    <div style={wrapper}>
+      <div style={card}>
+        <div style={{ padding: "1rem" }}>
+          <div style={{ fontWeight: "900", fontSize: "1.1rem" }}>Paso #4:</div>
+          <div style={{ fontSize: "1.2rem" }}>¿Cuándo quieres lograrlo?</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function WidgetAhorroProgramadoPaso5({ message, webChatInstance }) {
+  return (
+    <div style={wrapper}>
+      <div style={card}>
+        <div style={{ padding: "1rem" }}>
+          <div style={{ fontWeight: "900", fontSize: "1.1rem" }}>Paso #5:</div>
+          <div style={{ fontSize: "1.2rem" }}>
+            ¿Cuál es tu frecuencia de ahorro?
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function WidgetAhorroProgramadoPaso6({ message, webChatInstance }) {
+  return (
+    <div style={wrapper}>
+      <div style={card}>
+        <div style={titleContainer}>
+          <img src={AhorroIcon} style={icon} alt=""></img>
+          <div style={titulo}>Resumen</div>
+          <div style={divider}></div>
+        </div>
+
+        <div style={descripcion}>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+              }}
+            >
+              <div style={{ fontSize: "1.2rem" }}>Concepto:</div>
+              <div
+                style={{
+                  fontSize: "1.3rem",
+                  fontWeight: "600",
+                  fontStyle: "italic",
+                }}
+              >
+                {message.user_defined.concepto}
+              </div>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                paddingTop: "0.5rem",
+              }}
+            >
+              <div style={{ fontSize: "1.2rem" }}>Cantidad:</div>
+              <div style={{ fontSize: "1.3rem", fontWeight: "800" }}>
+                {`$${message.user_defined.cantidad.value}.00`}
+              </div>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                paddingTop: "0.5rem",
+              }}
+            >
+              <div style={{ fontSize: "1.2rem" }}>Fecha inicio:</div>
+              <div style={{ fontSize: "1.3rem", fontWeight: "800" }}>
+                {message.user_defined.inicio.value}
+              </div>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                paddingTop: "0.5rem",
+              }}
+            >
+              <div style={{ fontSize: "1.2rem" }}>Fecha fin:</div>
+              <div style={{ fontSize: "1.3rem", fontWeight: "800" }}>
+                {message.user_defined.fin.value}
+              </div>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                paddingTop: "0.5rem",
+              }}
+            >
+              <div style={{ fontSize: "1.2rem" }}>Frecuencia:</div>
+              <div style={{ fontSize: "1.3rem", fontWeight: "800" }} s>
+                {message.user_defined.frecuencia}
+              </div>
+            </div>
+          </div>
+          {/* <div style={{ fontSize: "1.2rem" }}>
+            Concepto: {message.user_defined.concepto}
+          </div>
+          <div style={{ fontSize: "1.2rem" }}>
+            Cantidad: ${message.user_defined.cantidad.value}
+          </div>
+          <div style={{ fontSize: "1.2rem" }}>
+            Inicio: {message.user_defined.inicio.value}
+          </div>
+          <div style={{ fontSize: "1.2rem" }}>
+            Fin: {message.user_defined.fin.value}
+          </div>
+          <div style={{ fontSize: "1.2rem" }}>
+            Frecuencia: {message.user_defined.frecuencia}
+          </div> */}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 WidgetAhorroProgramadoInfo.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   message: PropTypes.object.isRequired,
@@ -175,8 +315,40 @@ WidgetAhorroProgramadoPaso2.propTypes = {
   webChatInstance: PropTypes.object.isRequired,
 };
 
+WidgetAhorroProgramadoPaso3.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  message: PropTypes.object.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  webChatInstance: PropTypes.object.isRequired,
+};
+
+WidgetAhorroProgramadoPaso4.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  message: PropTypes.object.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  webChatInstance: PropTypes.object.isRequired,
+};
+
+WidgetAhorroProgramadoPaso5.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  message: PropTypes.object.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  webChatInstance: PropTypes.object.isRequired,
+};
+
+WidgetAhorroProgramadoPaso6.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  message: PropTypes.object.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  webChatInstance: PropTypes.object.isRequired,
+};
+
 export {
   WidgetAhorroProgramadoInfo,
   WidgetAhorroProgramadoPaso1,
   WidgetAhorroProgramadoPaso2,
+  WidgetAhorroProgramadoPaso3,
+  WidgetAhorroProgramadoPaso4,
+  WidgetAhorroProgramadoPaso5,
+  WidgetAhorroProgramadoPaso6,
 };

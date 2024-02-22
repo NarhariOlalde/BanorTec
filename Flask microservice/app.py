@@ -28,7 +28,7 @@ def get_tarjetas_disponibles():
 @app.route('/revisa_tarjeta', methods=['POST'])
 def get_card_status():
     data = request.json
-    userId = data.get('_userId')
+    userId = data.get('userId')
     return check_card(userId)
 
 

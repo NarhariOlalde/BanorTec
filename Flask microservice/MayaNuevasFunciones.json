@@ -299,12 +299,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "_userId": {
+                  "userId": {
                     "type": "string",
                     "description": "ID único del usuario"
                   }
                 },
-                "required": ["_userId"]
+                "required": ["userId"]
               }
             }
           }
@@ -315,27 +315,30 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "description": "Mensaje sobre la tarjeta"
-                    },
-                    "tarjetaNombre": {
-                      "type": "string",
-                      "description": "Nombre de la tarjeta"
-                    },
-                    "numero": {
-                      "type": "string",
-                      "description": "Numero de la tarjeta"
-                    },
-                    "saldo": {
-                      "type": "string",
-                      "description": "Saldo disponible en la tarjeta"
-                    },
-                    "fechaVencimiento": {
-                      "type": "string",
-                      "description": "Fecha de venciomiento de la tarjeta"
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string",
+                        "description": "Mensaje sobre la tarjeta"
+                      },
+                      "tarjetaNombre": {
+                        "type": "string",
+                        "description": "Nombre de la tarjeta"
+                      },
+                      "numero": {
+                        "type": "string",
+                        "description": "Numero de la tarjeta"
+                      },
+                      "saldo": {
+                        "type": "string",
+                        "description": "Saldo disponible en la tarjeta"
+                      },
+                      "fechaVencimiento": {
+                        "type": "string",
+                        "description": "Fecha de venciomiento de la tarjeta"
+                      }
                     }
                   }
                 }

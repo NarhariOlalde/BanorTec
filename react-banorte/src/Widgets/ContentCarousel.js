@@ -96,12 +96,7 @@ function ContentCarousel({ message, webChatInstance }) {
                     <div
                       className="Carousel__CardTitle"
                       style={{
-                        color:
-                          nombre === "Oro"
-                            ? "#E3B758"
-                            : nombre === "Enlace"
-                            ? "#CF0A2D"
-                            : "#393939",
+                        color: "#393939",
                       }}
                     >
                       Banorte {nombre}

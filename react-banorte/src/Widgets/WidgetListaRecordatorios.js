@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useCallback } from "react";
-import { FaBell } from "react-icons/fa";
+// import { FaBell } from "react-icons/fa";
 import UsuarioImagen from "../assets/perfil.png";
 
 // Estilos CSS para el componente
@@ -8,58 +8,70 @@ const wrapper = {
   display: "flex",
   flexDirection: "column",
   width: "100%",
-  gap: "0.5rem",
+  paddingBottom: "0.5rem",
 };
 
+// const titleContainer = {
+//   width: "100%",
+//   borderRadius: "1rem",
+//   boxShadow: "0.1rem 0.1rem 0.5rem 0.2rem rgba(0, 0, 0, 0.1)",
+//   backgroundColor: "#5C6670",
+//   color: "#ffffff",
+//   padding: "1rem",
+//   display: "flex",
+//   position: "relative",
+//   alignItems: "center",
+// };
+
+// const title = {
+//   fontSize: "1.3rem",
+//   fontWeight: "900",
+//   paddingLeft: "1rem",
+// };
+
+// const iconContainer = {
+//   position: "relative",
+// };
+
+// const icon = {
+//   fontSize: "1.5rem",
+// };
+
+// const iconBox = {
+//   width: "1.2rem",
+//   height: "1.3rem",
+//   backgroundColor: "red",
+//   borderRadius: "50%",
+//   display: "flex",
+//   justifyContent: "center",
+//   alignItems: "center",
+//   position: "absolute",
+//   top: "-0.5rem",
+//   right: "-0.5rem",
+// };
+
 const titleContainer = {
-  width: "100%",
-  borderRadius: "1rem",
+  borderRadius: "1rem 1rem 0 0",
   boxShadow: "0.1rem 0.1rem 0.5rem 0.2rem rgba(0, 0, 0, 0.1)",
   backgroundColor: "#5C6670",
   color: "#ffffff",
-  padding: "1rem",
-  display: "flex",
-  position: "relative",
-  alignItems: "center",
-};
-
-const title = {
-  fontSize: "1.3rem",
-  fontWeight: "900",
-  paddingLeft: "1rem",
-};
-
-const iconContainer = {
-  position: "relative",
-};
-
-const icon = {
-  fontSize: "1.5rem",
-};
-
-const iconBox = {
-  width: "1.2rem",
-  height: "1.3rem",
-  backgroundColor: "red",
-  borderRadius: "50%",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  position: "absolute",
-  top: "-0.5rem",
-  right: "-0.5rem",
+  padding: "0.5rem 1rem 0.5rem 1rem",
+  fontSize: "1.1rem",
+  fontWeight: "700",
+  width: "80%",
 };
 
 const card = {
   width: "100%",
   backgroundColor: "#ffffff",
-  borderRadius: "1rem",
+  borderRadius: "0.5rem",
   boxShadow: "0.1rem 0.1rem 0.5rem 0.2rem rgba(0, 0, 0, 0.1)",
   position: "relative",
   display: "flex",
   flexDirection: "column",
   overflow: "hidden",
   gap: "0.5rem",
+  cursor: "pointer",
 };
 
 const recordatorioContainer = {
@@ -121,13 +133,15 @@ function WidgetListaRecordatorios({ message, webChatInstance }) {
 
   return (
     <div style={wrapper}>
-      <div style={titleContainer}>
+      {/* <div style={titleContainer}>
         <div style={iconContainer}>
           <FaBell style={icon} />
           <div style={iconBox}>{recordatorios.length}</div>
         </div>
         <div style={title}>Tienes {recordatorios.length} recordatorios</div>
-      </div>
+      </div> */}
+
+      <div style={titleContainer}>Recordatorios de pagos</div>
 
       <div style={card}>
         {recordatorios.map((recordatorio, index) => {
@@ -150,7 +164,9 @@ function WidgetListaRecordatorios({ message, webChatInstance }) {
           );
         })}
       </div>
-      <div>Haz click sobre el recordatorio para obtener más información</div>
+      <div style={{ color: "#5C6670", paddingTop: "0.5rem" }}>
+        Haz click sobre el recordatorio para ver detalle
+      </div>
     </div>
   );
 }

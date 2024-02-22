@@ -71,7 +71,7 @@ function WidgetAlternativa({ message, webChatInstance }) {
   const vencimiento = message.user_defined.fechaVencimiento;
 
   const tarjeta =
-    nombre === "oro" ? tarjeta1 : nombre === "enlace" ? tarjeta2 : tarjeta3;
+    nombre === "Oro" ? tarjeta1 : nombre === "Enlace" ? tarjeta2 : tarjeta3;
   const image = urlImageMap.get(tarjeta) || tarjeta;
 
   return (
@@ -80,9 +80,9 @@ function WidgetAlternativa({ message, webChatInstance }) {
         style={{
           ...card,
           borderBottom: `0.5rem solid ${
-            nombre === "oro"
+            nombre === "Oro"
               ? "#E3B758"
-              : nombre === "enlace"
+              : nombre === "Enlace"
               ? "#CF0A2D"
               : "#393939"
           }`,
@@ -98,12 +98,7 @@ function WidgetAlternativa({ message, webChatInstance }) {
           <div style={{ marginTop: "-0.5rem" }}>
             <div
               style={{
-                color:
-                  nombre === "oro"
-                    ? "#E3B758"
-                    : nombre === "enlace"
-                    ? "#CF0A2D"
-                    : "#393939",
+                color: "#393939",
                 fontSize: "1.4rem",
                 fontWeight: "800",
               }}

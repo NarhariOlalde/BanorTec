@@ -21,37 +21,41 @@ def saludFinanciera(userId, mes, costo):
     calculoSalud = gastoMensual/ingresoMensual
     # Ahorro del 40% de Ingresos - Gastos
     ahorroMensual = (ingresoMensual - gastoMensual) * 0.4
-    frase = ""
 
-    if(calculoSalud > 0.95):
-        estadoSalud = "baja"
-        frase = "Tus ingresos son casi iguales a tus egresos, por lo que no te lo recomiendo. Sin embargo, puedo ayudarte a ahorrar"
-    elif(calculoSalud > 0.85):
-        estadoSalud = "media"
-        if(ahorroMensual * 6 >= costo):
-            ahorroNetoMensual = math.ceil(costo / 6)
-            frase = "Con un ahorro de $**" + str(ahorroNetoMensual) + "** durante los siguientes **6 meses** podrías realizar la compra."
-        elif(ahorroMensual * 9 >= costo):
-            ahorroNetoMensual = math.ceil(costo / 9)
-            frase = "Con un ahorro de $**" + str(ahorroNetoMensual) + "** durante los siguientes **9 meses** podrías realizar la compra."
-        elif(ahorroMensual * 12 >= costo):
-            ahorroNetoMensual = math.ceil(costo / 12)
-            frase = "Con un ahorro de $**" + str(ahorroNetoMensual) + "** durante los siguientes **12 meses** podrías realizar la compra."
-        else:
-            frase = "Tus ingresos son casi iguales a tus egresos, por lo que no te lo recomiendo. Sin embargo, puedo ayudarte a ahorrar"
-    else: 
-        estadoSalud = "buena"
-        if(ahorroMensual * 6 >= costo):
-            ahorroNetoMensual = math.ceil(costo / 6)
-            frase = "Con un ahorro de **$" + str(ahorroNetoMensual) + "** durante los siguientes **6 meses** podrías realizar la compra."
-        elif(ahorroMensual * 9 >= costo):
-            ahorroNetoMensual = math.ceil(costo / 9)
-            frase = "Con un ahorro de **$" + str(ahorroNetoMensual) + "** durante los siguientes **9 meses** podrías realizar la compra."
-        elif(ahorroMensual * 12 >= costo):
-            ahorroNetoMensual = math.ceil(costo / 12)
-            frase = "Con un ahorro de **$" + str(ahorroNetoMensual) + "** durante los siguientes **12 meses** podrías realizar la compra."
-        else:
-            frase = "Tus ingresos son casi iguales a tus egresos, por lo que no te lo recomiendo. Sin embargo, puedo ayudarte a ahorrar"
+    estadoSalud = ""
+    frase = "Estos son tus ingresos y egresos del mes. ¡Puedp ayudarte a ahorrar!"
+
+    # if(calculoSalud > 0.95):
+        # estadoSalud = "baja"
+        # frase = "Tus ingresos son casi iguales a tus egresos, por lo que no te lo recomiendo. Sin embargo, puedo ayudarte a ahorrar"
+    # elif(calculoSalud > 0.85):
+    #     estadoSalud = "media"
+        # if(ahorroMensual * 6 >= costo):
+        #     ahorroNetoMensual = math.ceil(costo / 6)
+        #     frase = "Con un ahorro de $**" + str(ahorroNetoMensual) + "** durante los siguientes **6 meses** podrías realizar la compra."
+        # elif(ahorroMensual * 9 >= costo):
+        #     ahorroNetoMensual = math.ceil(costo / 9)
+        #     frase = "Con un ahorro de $**" + str(ahorroNetoMensual) + "** durante los siguientes **9 meses** podrías realizar la compra."
+        # elif(ahorroMensual * 12 >= costo):
+        #     ahorroNetoMensual = math.ceil(costo / 12)
+        #     frase = "Con un ahorro de $**" + str(ahorroNetoMensual) + "** durante los siguientes **12 meses** podrías realizar la compra."
+        # else:
+        # frase = "Tus ingresos son casi iguales a tus egresos, por lo que no te lo recomiendo. Sin embargo, puedo ayudarte a ahorrar"
+        # frase = "¡Puedo ayudar a ahorrar!"
+    # else: 
+    #     estadoSalud = "buena"
+        # if(ahorroMensual * 6 >= costo):
+        #     ahorroNetoMensual = math.ceil(costo / 6)
+        #     frase = "Con un ahorro de **$" + str(ahorroNetoMensual) + "** durante los siguientes **6 meses** podrías realizar la compra."
+        # elif(ahorroMensual * 9 >= costo):
+        #     ahorroNetoMensual = math.ceil(costo / 9)
+        #     frase = "Con un ahorro de **$" + str(ahorroNetoMensual) + "** durante los siguientes **9 meses** podrías realizar la compra."
+        # elif(ahorroMensual * 12 >= costo):
+        #     ahorroNetoMensual = math.ceil(costo / 12)
+        #     frase = "Con un ahorro de **$" + str(ahorroNetoMensual) + "** durante los siguientes **12 meses** podrías realizar la compra."
+        # else:
+        # frase = "Tus ingresos son casi iguales a tus egresos, por lo que no te lo recomiendo. Sin embargo, puedo ayudarte a ahorrar"
+    
 
     return {
         "costo": costo,
