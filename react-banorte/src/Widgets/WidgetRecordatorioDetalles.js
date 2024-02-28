@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
-import UsuarioImagen from "../assets/perfil.png";
+import Usuario5678 from "../assets/5678.png";
+import Usuario9101 from "../assets/9101.png";
 
 const wrapper = {
   display: "flex",
@@ -47,7 +48,15 @@ function WidgetRecordatorioDetalles({ message, webChatInstance }) {
       <div style={titleContainer}>{fechaRecordatorio}</div>
       <div style={card}>
         <div>
-          <img src={UsuarioImagen} style={usuarioFoto} alt="perfil" />
+          <img
+            src={
+              accountDestination === "Valeria Fernandez"
+                ? Usuario5678
+                : Usuario9101
+            }
+            style={usuarioFoto}
+            alt="perfil"
+          />
         </div>
         <div
           style={{

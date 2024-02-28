@@ -27,7 +27,10 @@ def recordatorioAutomatico():
     today = datetime.now().date()
 
     # Busca el usuario actual y los recordatorios correspondientes a hoy em "REMINDER_DATE"
-    filtro_usuario_dia = df[(df['CUST_NUM'] == int(currentIdUser)) & (df['REMINDER_DATE'] == today.strftime("%Y-%m-%d"))]
+    # filtro_usuario_dia = df[(df['CUST_NUM'] == int(currentIdUser)) & (df['REMINDER_DATE'] == today.strftime("%Y-%m-%d"))] Check only the current day
+    date_range = pd.date_range(today, periods=5)
+    date_range_str = date_range.strftime("%Y-%m-%d")
+    filtro_usuario_dia = df[(df['CUST_NUM'] == int(currentIdUser)) & (df['REMINDER_DATE'].isin(date_range_str))]
 
     listaRecordatorios = []
 
@@ -40,7 +43,11 @@ def recordatorioAutomatico():
         pred_monto = math.ceil(datosRecordatorio["PRED_MONTO"])
 
         # Dia actual en espanol
-        dia, mes = today.strftime("%d de %B").split(' de ')
+        # dia, mes = today.strftime("%d de %B").split(' de ')
+        # fecha_recordatorio = f"{dia} de {meses.get(mes, mes)}"
+         # Extract day and month from the record's REMINDER_DATE
+        fechaRecord = datetime.strptime(datosRecordatorio.REMINDER_DATE, "%Y-%m-%d")
+        dia, mes = fechaRecord.strftime("%d de %B").split(' de ')
         fecha_recordatorio = f"{dia} de {meses.get(mes, mes)}"
 
         listaRecordatorios.append({

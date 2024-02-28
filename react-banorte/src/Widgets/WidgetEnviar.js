@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import Arrow from "../assets/arrow.png";
-import Perfil from "../assets/perfil.png";
+import Usuario5678 from "../assets/5678.png";
+import Usuario9101 from "../assets/9101.png";
 
 // Estilos CSS para el componente
 const wrapper = {
@@ -170,7 +171,15 @@ function WidgetEnviar({ message, webChatInstance }) {
         <img src={Arrow} style={icon} alt="arrow" />
 
         <div style={perfil}>
-          <img src={Perfil} style={perfilFoto} alt="perfil" />
+          <img
+            src={
+              accountDestination === "Valeria Fernandez"
+                ? Usuario5678
+                : Usuario9101
+            }
+            style={perfilFoto}
+            alt="perfil"
+          />
           <div style={perfilNombre}>{accountDestination}</div>
         </div>
       </div>

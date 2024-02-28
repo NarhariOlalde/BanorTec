@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 import { useCallback, useState } from "react";
 // import { FaBell } from "react-icons/fa";
-import UsuarioImagen from "../assets/perfil.png";
+import Usuario5678 from "../assets/5678.png";
+import Usuario9101 from "../assets/9101.png";
 
 // Estilos CSS para el componente
 const wrapper = {
@@ -164,7 +165,15 @@ function WidgetListaRecordatorios({ message, webChatInstance }) {
               }
               onClick={() => onCardClick(index)}
             >
-              <img src={UsuarioImagen} style={usuarioFoto} alt="perfil" />
+              <img
+                src={
+                  accountDestination === "Valeria Fernandez"
+                    ? Usuario5678
+                    : Usuario9101
+                }
+                style={usuarioFoto}
+                alt="perfil"
+              />
               <div style={infoContainer}>
                 <div style={infoNombre}>{accountDestination}</div>
                 <div style={infoDetails}>
