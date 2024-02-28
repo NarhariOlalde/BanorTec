@@ -79,13 +79,7 @@ function WidgetAlternativa({ message, webChatInstance }) {
       <div
         style={{
           ...card,
-          borderBottom: `0.5rem solid ${
-            nombre === "Oro"
-              ? "#E3B758"
-              : nombre === "Enlace"
-              ? "#CF0A2D"
-              : "#393939"
-          }`,
+          borderBottom: `0.5rem solid ${"#5C6670"}`,
         }}
       >
         <div style={imageContainer}>

@@ -23,8 +23,11 @@ function ContentCarousel({ message, webChatInstance }) {
   // Almacena el elemento actual en la barra de navegacion
   const [navigationElement, setNavigationElement] = useState();
 
+  const [selectedCard, setSelectedCard] = useState();
+
   const onCardClick = useCallback(
     (text) => {
+      setSelectedCard(text);
       webChatInstance.send({ input: { text: `${text}` } }, { silent: true });
     },
     [webChatInstance]
@@ -143,7 +146,8 @@ function ContentCarousel({ message, webChatInstance }) {
                   <Button
                     className="Carousel__CardButton Carousel__CardButtonMessage"
                     style={{
-                      backgroundColor: "#5C6670",
+                      backgroundColor:
+                        selectedCard === nombre ? "#4b4f53" : "#5C6670",
                     }}
                     onClick={() => onCardClick(nombre)}
                   >
