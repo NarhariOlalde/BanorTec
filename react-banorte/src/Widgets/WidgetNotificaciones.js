@@ -1,3 +1,4 @@
+import { useState } from "react";
 import PropTypes from "prop-types";
 import { useCallback } from "react";
 import { FaBell } from "react-icons/fa";
@@ -77,10 +78,36 @@ const dashboardIcon = {
   color: "#5C6670",
 };
 
+const selectedDashboardCard = {
+  backgroundColor: "#5C6670",
+  borderRadius: "1rem",
+  boxShadow: "0.1rem 0.1rem 0.2rem 0.2rem rgba(0, 0, 0, 0.05)",
+  flex: "50%",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  padding: "1rem",
+  position: "relative",
+  color: "#5C6670",
+  cursor: "pointer",
+};
+
+const selectedDashboardIcon = {
+  fontSize: "5rem",
+  color: "#ffffff",
+};
+
 const dashboardItem = {
   fontSize: "1.5rem",
   fontWeight: "700",
   color: "#5C6670",
+  position: "relative",
+};
+
+const selectedDashboardItem = {
+  fontSize: "1.5rem",
+  fontWeight: "700",
+  color: "#ffffff",
   position: "relative",
 };
 
@@ -107,11 +134,11 @@ function WidgetNotificaciones({ message, webChatInstance }) {
   const avisosTarjetas = message.user_defined.avisos;
   const conteoNotificaciones = avisosTarjetas.length + recordatorios.length;
 
-  console.log(recordatorios);
-  console.log(avisosTarjetas);
+  const [selectedButton, setSelectedButton] = useState("");
 
   const onCardClick = useCallback(
     (categoria) => {
+      setSelectedButton(categoria);
       webChatInstance.send(
         {
           input: {
@@ -134,27 +161,62 @@ function WidgetNotificaciones({ message, webChatInstance }) {
         <div style={title}>Tienes {conteoNotificaciones} notificaciones</div>
       </div>
       <div style={dashboard}>
-        <div style={dashboardCard} onClick={() => onCardClick("aviso")}>
+        <div
+          style={
+            selectedButton === "aviso" ? selectedDashboardCard : dashboardCard
+          }
+          onClick={() => onCardClick("aviso")}
+        >
           <div style={iconContainer}>
-            <FaAddressCard style={dashboardIcon} />
+            <FaAddressCard
+              style={
+                selectedButton === "aviso"
+                  ? selectedDashboardIcon
+                  : dashboardIcon
+              }
+            />
           </div>
-          <div style={dashboardItem}>
+          <div
+            style={
+              selectedButton === "aviso" ? selectedDashboardItem : dashboardItem
+            }
+          >
             Cuentas
             <div style={dashboardIconBox}>{avisosTarjetas.length}</div>
           </div>
         </div>
-        <div style={dashboardCard} onClick={() => onCardClick("recordatorio")}>
+        <div
+          style={
+            selectedButton === "recordatorio"
+              ? selectedDashboardCard
+              : dashboardCard
+          }
+          onClick={() => onCardClick("recordatorio")}
+        >
           <div style={iconContainer}>
-            <FaMoneyBillTransfer style={dashboardIcon} />
+            <FaMoneyBillTransfer
+              style={
+                selectedButton === "recordatorio"
+                  ? selectedDashboardIcon
+                  : dashboardIcon
+              }
+            />
           </div>
-          <div style={dashboardItem}>
+          <div
+            style={
+              selectedButton === "recordatorio"
+                ? selectedDashboardItem
+                : dashboardItem
+            }
+          >
             Pagos
             <div style={dashboardIconBox}>{recordatorios.length}</div>
           </div>
         </div>
       </div>
       <div style={{ color: "#5C6670" }}>
-        Haz click sobre una categoría para ver las notificaciones
+        Haz click sobre una categoría para ver las notificaciones o realiza una
+        pregunta
       </div>
     </div>
   );

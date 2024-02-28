@@ -41,6 +41,8 @@ function WidgetAvisosCarrusel({ message, webChatInstance }) {
   const tarjetasData = message.user_defined.data;
   const [navigationElement, setNavigationElement] = useState();
 
+  const [selectedMessage, setSelectedMessage] = useState();
+
   const avisosTarjetas = tarjetasData.reduce((acc, curr) => {
     const existingItem = acc.find((item) => item.numero === curr.numero);
     if (existingItem) {
@@ -64,6 +66,7 @@ function WidgetAvisosCarrusel({ message, webChatInstance }) {
 
   const onCardClick = useCallback(
     (shortMessage) => {
+      setSelectedMessage(shortMessage);
       const index = tarjetasData.findIndex(
         (item) => item["shortMessage"] === shortMessage
       );
@@ -201,10 +204,17 @@ function WidgetAvisosCarrusel({ message, webChatInstance }) {
                                 fontSize: "1.1rem",
                                 fontWeight: "500",
                                 position: "relative",
-                                backgroundColor: "rgba(0,0,0,0.05)",
+                                backgroundColor:
+                                  selectedMessage === message
+                                    ? "#5C6670"
+                                    : "rgba(0,0,0,0.05)",
                                 borderRadius: "0.3rem",
                                 marginTop: "0.3rem",
                                 cursor: "pointer",
+                                color:
+                                  selectedMessage === message
+                                    ? "#ffffff"
+                                    : "#5C6670",
                               }}
                               key={message}
                               onClick={() => onCardClick(message)}
@@ -212,7 +222,10 @@ function WidgetAvisosCarrusel({ message, webChatInstance }) {
                               <FaCircleExclamation
                                 style={{
                                   fontSize: "0.8rem",
-                                  color: "#EB0029",
+                                  color:
+                                    selectedMessage === message
+                                      ? "#ffffff"
+                                      : "#EB0029",
                                   padding: "0 0.5rem 0 0",
                                 }}
                               />

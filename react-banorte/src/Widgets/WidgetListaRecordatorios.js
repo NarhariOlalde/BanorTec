@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 // import { FaBell } from "react-icons/fa";
 import UsuarioImagen from "../assets/perfil.png";
 
@@ -80,6 +80,12 @@ const recordatorioContainer = {
   display: "flex",
 };
 
+const selectedRecordatorioContainer = {
+  backgroundColor: "rgba(210, 220, 223)",
+  padding: "0.5rem",
+  display: "flex",
+};
+
 const usuarioFoto = {
   width: "4rem",
 };
@@ -116,9 +122,11 @@ const infoDinero = {
 function WidgetListaRecordatorios({ message, webChatInstance }) {
   // Datos de la tarjeta del usuario
   const recordatorios = message.user_defined.data;
+  const [selectedRecordatorio, setSelectedRecordatorio] = useState("");
 
   const onCardClick = useCallback(
     (recordatorio) => {
+      setSelectedRecordatorio(recordatorio);
       webChatInstance.send(
         {
           input: {
@@ -149,7 +157,11 @@ function WidgetListaRecordatorios({ message, webChatInstance }) {
             recordatorio;
           return (
             <div
-              style={recordatorioContainer}
+              style={
+                selectedRecordatorio === index
+                  ? selectedRecordatorioContainer
+                  : recordatorioContainer
+              }
               onClick={() => onCardClick(index)}
             >
               <img src={UsuarioImagen} style={usuarioFoto} alt="perfil" />
