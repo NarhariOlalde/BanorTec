@@ -5,6 +5,20 @@ import pandas as pd
 import math
 import re
 
+spanish_to_english = {
+    'enero': 'January',
+    'febrero': 'February',
+    'marzo': 'March',
+    'abril': 'April',
+    'mayo': 'May',
+    'junio': 'June',
+    'julio': 'July',
+    'agosto': 'August',
+    'septiembre': 'September',
+    'octubre': 'October',
+    'noviembre': 'November',
+    'diciembre': 'December'
+}
 def gasto_mensual(categoria, mes, userId):
     # Read MongoDB database
     df = pd.DataFrame(list(mongo.db.test_dataset_with_predictions.find()))
@@ -15,7 +29,9 @@ def gasto_mensual(categoria, mes, userId):
     # Busca el mes o regresa el mes actual
     match = re.search(pattern, mes, re.IGNORECASE)
     if match:
-        filtro_mes = df[df['FEC_PROC'].str.contains(match.group()[:3].upper())]
+        # filtro_mes = df[df['FEC_PROC'].str.contains(match.group()[:3].upper())]
+        mes_ingles = spanish_to_english.get(match.group(0).lower(), match.group(0))
+        filtro_mes = df[df['FEC_PROC'].str.contains(mes_ingles[:3].upper())]
     else:
         filtro_mes = df[df['FEC_PROC'].str.contains("NOV")]
 
@@ -51,7 +67,8 @@ def generate_chart(mes):
     # Busca el mes especifico o regresa el actual
     match = re.search(pattern, mes, re.IGNORECASE)
     if match:
-        filtro_mes = df[df['FEC_PROC'].str.contains(match.group()[:3].upper())]
+        mes_ingles = spanish_to_english.get(match.group(0).lower(), match.group(0))
+        filtro_mes = df[df['FEC_PROC'].str.contains(mes_ingles[:3].upper())]
         mes = match.group()[:3].upper()
     else:
         filtro_mes = df[df['FEC_PROC'].str.contains("NOV")]
@@ -134,7 +151,9 @@ def crea_imagen_mes(categoriasFlags, mes, userId):
     # Busca el mes especifico o regresa el actual
     match = re.search(pattern, mes, re.IGNORECASE)
     if match:
-        filtro_mes = df[df['FEC_PROC'].str.contains(match.group()[:3].upper())]
+        # filtro_mes = df[df['FEC_PROC'].str.contains(match.group()[:3].upper())]
+        mes_ingles = spanish_to_english.get(match.group(0).lower(), match.group(0))
+        filtro_mes = df[df['FEC_PROC'].str.contains(mes_ingles[:3].upper())]
     else:
         filtro_mes = df[df['FEC_PROC'].str.contains("NOV")]
 
