@@ -7,7 +7,7 @@ import { useCallback } from "react";
 // Estilos CSS para el componente
 const wrapper = {
   margin: "0",
-  padding: "0",
+  padding: "0 0 2rem 0",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
@@ -277,6 +277,7 @@ function WidgetSaludFinanciera({ message, webChatInstance }) {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            width: "100%",
           }}
         >
           <div style={{ display: "flex", width: "100%", paddingTop: "1rem" }}>
