@@ -189,7 +189,7 @@ function WidgetSaludFinanciera({ message, webChatInstance }) {
           alignSelf: "flex-start",
         }}
       >
-        Ingresos y gastos
+        Ingresos y egresos
       </div>
       <div style={card}>
         <div style={header}>
