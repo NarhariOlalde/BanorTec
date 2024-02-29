@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import { BiSolidDollarCircle } from "react-icons/bi";
 import PiggyBankIcon from "../assets/piggybank.png";
+import { Button } from "carbon-components-react";
+import { useCallback } from "react";
 
 // Estilos CSS para el componente
 const wrapper = {
@@ -11,7 +13,6 @@ const wrapper = {
   alignItems: "center",
   flexDirection: "column",
   width: "100%",
-  gap: "1rem",
 };
 
 const card = {
@@ -21,15 +22,18 @@ const card = {
   borderRadius: "1rem",
   boxShadow: "0.1rem 0.1rem 0.5rem 0.1rem rgba(0,0,0,0.15)",
   minWidth: "100%",
+  backgroundColor: "#F9F9F9",
 };
 
 const header = {
   padding: "1rem 2rem 1rem 2rem",
-  background: "#FC1E7B",
+  background: "#5C6670",
+
+  borderRadius: "0 1rem 0 0",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  borderRadius: "1rem 1rem 0 0",
+
   color: "white",
   position: "relative",
 };
@@ -74,13 +78,13 @@ const ingresos = {
   width: "50%",
   padding: "1rem",
   borderRight: "0.1rem solid rgba(210, 215, 211)",
-  color: "#855698",
+  color: "#5C6670",
 };
 
 const gastos = {
   width: "50%",
   padding: "1rem",
-  color: "#FEAE1F",
+  color: "#EB0029",
 };
 
 const elementoTitle = {
@@ -141,7 +145,6 @@ const piggyBankImage = {
 function WidgetSaludFinanciera({ message, webChatInstance }) {
   // Informacion acerca del tip financiero. Ademas se parsea el objeto de JSON a un objeto de JS
   const jsonObj = message.user_defined.data.replace(/'/g, '"');
-  console.log(jsonObj);
   const datosBancarios = JSON.parse(jsonObj);
 
   // Modifica el string del saldo, ingresos y gastos
@@ -157,11 +160,39 @@ function WidgetSaludFinanciera({ message, webChatInstance }) {
     ","
   );
 
+  const onCardClick = useCallback(
+    (confirmation) => {
+      webChatInstance.send(
+        {
+          input: {
+            text: `${confirmation}`,
+          },
+        },
+        { silent: true }
+      );
+    },
+    [webChatInstance]
+  );
+
   return (
     <div style={wrapper}>
+      <div
+        style={{
+          fontSize: "1.2rem",
+          padding: "0.5rem 1rem",
+          backgroundColor: "#EB0029",
+          borderRadius: "1rem 1rem 0 0",
+          color: "#ffffff",
+          fontWeight: "700",
+          display: "flex",
+          justifyContent: "center",
+          alignSelf: "flex-start",
+        }}
+      >
+        Ingresos y gastos
+      </div>
       <div style={card}>
         <div style={header}>
-          <img src={PiggyBankIcon} style={piggyBankImage}></img>
           <div style={dinero}>
             <div style={dineroSimbolo}>$</div>
             <div style={dineroCantidad}>{saldoTotal}.</div>
@@ -209,6 +240,61 @@ function WidgetSaludFinanciera({ message, webChatInstance }) {
                 <div style={elementoContainerCero}>00</div>
               </div>
             </div>
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            borderTop: "0.1rem solid rgba(210, 215, 211)",
+          }}
+        >
+          <div
+            style={{
+              fontSize: "1rem",
+              paddingTop: "0.5rem",
+            }}
+          >
+            ¡Puedes ayudarte a ahorrar!
+          </div>
+          <div
+            style={{
+              fontSize: "1.4rem",
+              padding: "0.5rem 1rem",
+              backgroundColor: "#C10000",
+              borderRadius: "1rem",
+              color: "#ffffff",
+              marginTop: "0.2rem",
+              fontWeight: "700",
+            }}
+          >
+            Ahorro programado
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <div style={{ display: "flex", width: "100%", paddingTop: "1rem" }}>
+            <Button
+              style={{
+                flex: "1",
+                borderRadius: "0 0 1rem 1rem",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                fontSize: "1rem",
+                width: "100%",
+                paddingLeft: "3.5rem",
+              }}
+              onClick={() => onCardClick("Si")}
+            >
+              <div>¡Quiero saber más!</div>
+            </Button>
           </div>
         </div>
       </div>
