@@ -40,7 +40,7 @@ def gasto_mensual(categoria, mes, userId):
         "GastosTotales": "{:,.0f}".format(gastosTotalesMes),
         "SaludFinanciera": estado
     }
-    
+ 
 def generate_chart(mes):
     # Read MongoDB database
     df = pd.DataFrame(list(mongo.db.test_dataset_with_predictions.find()))
@@ -78,28 +78,49 @@ def generate_chart(mes):
 
     return top_6
 
+categoriasColor = {
+    "Comida": "rgb(255, 128, 41)",
+    "Transporte": "rgba(190, 82, 128)",
+    "Ropa": "#FAC310",
+    "Salud": "#B01657",
+    "Entretenimiento": "#E4415D",
+    "Tecnologia": "#E35122",
+    "Servicios": "#E6201B",
+    "Viajes": "rgb(255, 128, 41)",
+    "Casa": "rgba(190, 82, 128)",
+    "Vehiculo": "#FAC310",
+    "Departamental": "#B01657",
+    "Super": "#E4415D",
+    "Mascotas": "#E35122",
+    "Deportes": "#E6201B",
+    "Educacion": "rgb(255, 128, 41)",
+    "Belleza": "rgba(190, 82, 128)",
+    "Compras en Linea": "#FAC310",
+    "Otros": "rgba(190,82,128)",
+}
+   
 def crea_imagen_mes(categoriasFlags, mes, userId):
     categoriasFlags = [categoriasFlags[0]["value"]]
 
     categorias = {
-        "Comida": {"category": "Comida", "color": "rgb(255, 128, 41)"},
-        "Transporte": {"category": "Transporte", "color": "rgba(190, 82, 128)"}, 
-        "Ropa": {"category": "Ropa", "color": "rgba(190, 82, 128)"}, 
-        "Salud": {"category": "Salud", "color": "rgba(190, 82, 128)"}, 
-        "Entretenimiento": {"category": "Entretenimiento", "color": "rgba(190, 82, 128)"}, 
-        "Tecnologia": {"category": "Tecnologia", "color": "rgba(190, 82, 128)"}, 
-        "Servicios": {"category": "Servicios", "color": "rgba(190, 82, 128)"}, 
-        "Viajes": {"category": "Viajes", "color": "rgba(190, 82, 128)"}, 
-        "Casa": {"category": "Casa", "color": "rgba(190, 82, 128)"},
-        "Vehiculo": {"category": "Vehiculo", "color": "rgba(190, 82, 128)"}, 
-        "Departamental": {"category": "Departamental", "color": "rgba(190, 82, 128)"}, 
-        "Super": {"category": "Super", "color": "rgba(190, 82, 128)"}, 
-        "Mascotas": {"category": "Mascotas", "color": "rgba(190, 82, 128)"}, 
-        "Deportes": {"category": "Deportes", "color": "rgba(190, 82, 128)"}, 
-        "Educacion": {"category": "Educacion", "color": "rgba(190, 82, 128)"}, 
-        "Belleza": {"category": "Belleza", "color": "rgba(190, 82, 128)"},  
-        "Compras en Linea": {"category": "Compras en Linea", "color": "rgba(190, 82, 128)"},  
-        "Otros": {"category": "Otros", "color": "rgba(190, 82, 128)"},  
+        "Comida": {"category": "Comida", "color": categoriasColor["Comida"]},
+        "Transporte": {"category": "Transporte", "color": categoriasColor["Transporte"]}, 
+        "Ropa": {"category": "Ropa", "color": categoriasColor["Ropa"]}, 
+        "Salud": {"category": "Salud", "color": categoriasColor["Salud"]}, 
+        "Entretenimiento": {"category": "Entretenimiento", "color": categoriasColor["Entretenimiento"]}, 
+        "Tecnologia": {"category": "Tecnologia", "color": categoriasColor["Tecnologia"]}, 
+        "Servicios": {"category": "Servicios", "color": categoriasColor["Servicios"]}, 
+        "Viajes": {"category": "Viajes", "color": categoriasColor["Viajes"]}, 
+        "Casa": {"category": "Casa", "color": categoriasColor["Casa"]},
+        "Vehiculo": {"category": "Vehiculo", "color": categoriasColor["Vehiculo"]}, 
+        "Departamental": {"category": "Departamental", "color": categoriasColor["Departamental"]}, 
+        "Super": {"category": "Super", "color": categoriasColor["Super"]}, 
+        "Mascotas": {"category": "Mascotas", "color": categoriasColor["Mascotas"]}, 
+        "Deportes": {"category": "Deportes", "color": categoriasColor["Deportes"]}, 
+        "Educacion": {"category": "Educacion", "color": categoriasColor["Educacion"]}, 
+        "Belleza": {"category": "Belleza", "color": categoriasColor["Belleza"]},  
+        "Compras en Linea": {"category": "Compras en Linea", "color": categoriasColor["Compras en Linea"]},  
+        "Otros": {"category": "Otros", "color": categoriasColor["Transporte"]},  
     }
 
     # Obtener el presupuesto de la categoria

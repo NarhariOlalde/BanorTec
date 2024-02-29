@@ -13,6 +13,8 @@ const wrapper = {
   width: "100%",
   gap: "1rem",
   backgroundColor: "white",
+  borderRadius: "1rem",
+  boxShadow: "0.1rem 0.1rem 0.4rem 0.2rem rgba(0,0,0,0.1)",
 };
 
 function WidgetCategoriasGrafica({ message, webChatInstance }) {
@@ -84,7 +86,7 @@ function WidgetCategoriasGrafica({ message, webChatInstance }) {
         },
         plugins: {
           datalabels: {
-            color: "gray",
+            color: "#5C6670",
             anchor: "end",
             align: "end",
             offset: 0,
