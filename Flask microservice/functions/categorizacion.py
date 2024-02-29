@@ -20,6 +20,7 @@ spanish_to_english = {
     'diciembre': 'December'
 }
 def gasto_mensual(categoria, mes, userId):
+    categoria = categoria.capitalize()
     # Read MongoDB database
     df = pd.DataFrame(list(mongo.db.test_dataset_with_predictions.find()))
 
@@ -160,6 +161,7 @@ def crea_imagen_mes(categoriasFlags, mes, userId):
     gastosPorCategoria = []
 
     for categoria in categoriasFlags:
+        categoria = categoria.capitalize()
         presupuesto = user["Presupuestos"][categoria]
 
         # Filtro de categoria para conocer el valor total
