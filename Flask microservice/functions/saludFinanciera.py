@@ -23,7 +23,7 @@ def saludFinanciera(userId, mes, costo):
     ahorroMensual = (ingresoMensual - gastoMensual) * 0.4
 
     estadoSalud = ""
-    frase = "Estos son tus ingresos y egresos del mes. ¡Puedp ayudarte a ahorrar!"
+    frase = "Estos son tus ingresos y egresos del mes"
 
     # if(calculoSalud > 0.95):
         # estadoSalud = "baja"
